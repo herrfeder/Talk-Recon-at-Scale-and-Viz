@@ -1,0 +1,42 @@
+\documentclass[convert={density=300,size=1080x1000,outext=.png}]{standalone}
+\usepackage[utf8]{inputenc}
+\usepackage{tikz}
+\usepackage{enumitem}
+\usetikzlibrary{arrows,shadows,decorations,backgrounds,fit,positioning,shapes,chains}
+\usepackage{epstopdf}
+
+
+\usepackage{pgf-umlsd}
+
+\tikzset{font=\tiny}
+
+\begin{document}
+ 
+\begin{sequencediagram}
+\newthread[white]{b}{Browser}
+\newinst[3]{w}{LuCi-Web-Server}
+\newinst[3]{l}{LoPy}
+ 
+\begin{call}{b}{GetConfig()}{w}{Parse Output in Javascript to Browser}
+   \begin{sdblock}{Loop until Keyword}{}
+   	\begin{call}{w}{Trigger Function on Serial Console}{l}{Read Serial Socket until Keyword}
+   	\end{call}
+   \end{sdblock}
+\end{call}
+ 
+%\begin{call}{u}{AIKAuthSecret}{b}{}
+ 
+%  \mess{b}{verifyAIKAuthSecret}{t}
+ 
+%  \begin{call}{b}{get AIK$_{pub}$}{t}{AIK$_{pub}$}
+%  \end{call}
+ 
+%\end{call}
+%  \begin{sdblock}{Loop}{}
+ 
+%    \begin{call}{u}{Do Something}{p}{AIK$_{pub}$}
+%    \end{call}
+%  \end{sdblock}
+\end{sequencediagram}
+ 
+\end{document}

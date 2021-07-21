@@ -1,0 +1,2 @@
+pandoc -t beamer --template=beamer.tex presentation.md -o presentation.pdf --latex-engine-opt=-shell-escape -H make_footnote_size.tex --highlight-style=zenburn
+

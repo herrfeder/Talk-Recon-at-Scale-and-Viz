@@ -1,0 +1,456 @@
+\PassOptionsToPackage{unicode=true}{hyperref} % options for packages loaded elsewhere
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[ignorenonframetext,]{beamer}
+\usepackage{pgfpages}
+\setbeamertemplate{caption}[numbered]
+\setbeamertemplate{caption label separator}{: }
+\setbeamercolor{caption name}{fg=normal text.fg}
+\beamertemplatenavigationsymbolsempty
+% Prevent slide breaks in the middle of a paragraph:
+\widowpenalties 1 10000
+\raggedbottom
+\setbeamertemplate{part page}{
+\centering
+\begin{beamercolorbox}[sep=16pt,center]{part title}
+  \usebeamerfont{part title}\insertpart\par
+\end{beamercolorbox}
+}
+\setbeamertemplate{section page}{
+\centering
+\begin{beamercolorbox}[sep=12pt,center]{part title}
+  \usebeamerfont{section title}\insertsection\par
+\end{beamercolorbox}
+}
+\setbeamertemplate{subsection page}{
+\centering
+\begin{beamercolorbox}[sep=8pt,center]{part title}
+  \usebeamerfont{subsection title}\insertsubsection\par
+\end{beamercolorbox}
+}
+\AtBeginPart{
+  \frame{\partpage}
+}
+\AtBeginSection{
+  \ifbibliography
+  \else
+    \frame{\sectionpage}
+  \fi
+}
+\AtBeginSubsection{
+  \frame{\subsectionpage}
+}
+\usepackage{lmodern}
+\usepackage{amssymb,amsmath}
+\usepackage{ifxetex,ifluatex}
+\usepackage{fixltx2e} % provides \textsubscript
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provides euro and other symbols
+\else % if luatex or xelatex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Ligatures=TeX,Scale=MatchLowercase}
+\fi
+% use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+% use microtype if available
+\IfFileExists{microtype.sty}{%
+\usepackage[]{microtype}
+\UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\IfFileExists{parskip.sty}{%
+\usepackage{parskip}
+}{% else
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt plus 2pt minus 1pt}
+}
+\usepackage{hyperref}
+\hypersetup{
+            pdftitle={Example Presentation},
+            pdfauthor={David Lassig},
+            pdfborder={0 0 0},
+            breaklinks=true}
+\urlstyle{same}  % don't use monospace font for urls
+\newif\ifbibliography
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\newenvironment{Shaded}{}{}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{#1}}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.49,0.56,0.16}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.53,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.56,0.13,0.00}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.73,0.13,0.13}{\textit{#1}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.02,0.16,0.49}{#1}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.40,0.40,0.40}{#1}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.74,0.48,0.00}{#1}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.73,0.40,0.53}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.10,0.09,0.49}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\usepackage{graphicx,grffile}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+\setlength{\emergencystretch}{3em}  % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{0}
+
+% set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+
+% Copyright 2004 by Madhusudan Singh <madhusudan.singh@gmail.com>
+%
+% This file may be distributed and/or modified
+%
+% 1. under the LaTeX Project Public License and/or
+% 2. under the GNU Public License.
+%
+% See the file doc/licenses/LICENSE for more details.
+
+\mode<presentation>
+
+\RequirePackage[utf8]{inputenc}
+\RequirePackage{lmodern}
+\RequirePackage[T1]{fontenc}
+\RequirePackage{listings}
+\RequirePackage{colortbl}
+\RequirePackage{keystroke}
+
+\definecolor{olive}{HTML}{80C040}
+\definecolor{purple}{HTML}{8000E0}
+\definecolor{darkblue}{HTML}{000080}
+\definecolor{darkgrey}{HTML}{808080}
+\definecolor{middlegrey}{HTML}{C0C0C0}
+\definecolor{lightgrey}{HTML}{F0F0F0}
+\definecolor{lightblue}{HTML}{01A0DE}
+
+
+\setbeamercolor*{palette primary}{fg=white,bg=white}
+\setbeamercolor*{palette quarternary}{bg=white}
+\setbeamercolor*{normal text}{fg=black}
+\setbeamercolor*{titlelike}{fg=black}
+\setbeamercolor*{example text}{use=palette secondary} %,palette secondary.bg
+%\setbeamercolor*{sidebar}{fg=yellow,bg=black}
+\setbeamercolor*{separation line}{fg=black}
+\setbeamercolor*{structur}{fg=yellow,bg=yellow}
+\setbeamercolor*{alerted text}{fg=red}
+%\setbeamercolor*{section in toc}{normal text}
+
+%Variante 1: Grau in grau
+ \setbeamercolor*{block body}{fg=black,bg=lightgrey}
+ \setbeamercolor*{block title}{fg=black,bg=middlegrey}
+ \setbeamercolor*{item}{fg=middlegrey}
+\setbeamercolor*{section in toc}{fg=black}
+ \setbeamercolor*{palette secondary}{bg=lightgrey}
+ \setbeamercolor*{palette tertiary}{bg=middlegrey}
+\setbeamercolor{section number projected}{bg=black}
+%Variante 2: Schwarz und rot
+%\setbeamercolor*{block title}{fg=white,bg=black}
+%\setbeamercolor*{block body}{fg=black,bg=lightgrey}
+%\setbeamercolor*{item}{fg=red}
+%\setbeamercolor*{palette secondary}{bg=black,fg=white}
+%\setbeamercolor*{palette tertiary}{bg=lightgrey}
+
+
+
+
+\newcommand{\rhbinsertclassification}{OFFEN}
+\newcommand{\rhbClassification}[1]{\renewcommand{\rhbinsertclassification}{#1}}
+\newcommand{\rhbTH}[1]{ \cellcolor{black} {\color{white}#1} }
+
+\newenvironment{rhbTable}[1]
+	{ \begin{center} \begin{tabular}{#1}\hline}
+	{\hline \end{tabular} \end{center}}
+\newcommand{\rhbcolorrow}{\rowcolor{lightgrey}}
+
+\newcommand{\rhbinsertlogo}{\includegraphics[height=1cm]{logo}}
+\newcommand{\rhbColumns}[2]
+	{
+		\begin{columns}[T]
+		\begin{columns}{.5\textwidth}
+		#1
+		\end{column}
+		\begin{column}{.5\textwidth}
+		#2
+		\end{column}
+		\end{columns}
+	
+	}
+
+
+\useinnertheme{rectangles}
+\useoutertheme{infolines}
+
+
+
+% modified templates
+
+\addtobeamertemplate{title page}{\centering \includegraphics[height=2cm]{logo}}{}
+
+
+\setbeamertemplate{frametitle}{%
+\begin{minipage}[b][1.2cm][c]{0.9\textwidth} \rhbinsertlogo%
+\hspace{0.5cm} \begin{beamercolorbox}[left]{white}%
+
+	
+\ifx\insertframesubtitle\@empty%
+\raisebox{8pt}{\insertframetitle}%
+\else%
+{{\insertframetitle}\par}
+{\usebeamerfont{subtitle}\usebeamercolor[fg]{framesubtitle}\insertframesubtitle\par}
+\fi
+\end{beamercolorbox}
+\end{minipage}%
+}
+
+
+\setbeamertemplate{headline}
+{
+  \leavevmode%
+  \hbox{%
+  \begin{beamercolorbox}[wd=.5\paperwidth,ht=2.65ex,dp=1.5ex,center]{section in head/foot}%
+    \usebeamerfont{section in head/foot}\insertsectionhead\hspace*{2ex}
+  \end{beamercolorbox}%
+  \begin{beamercolorbox}[wd=.5\paperwidth,ht=2.65ex,dp=1.5ex,center]{subsection in head/foot}%
+    \usebeamerfont{subsection in head/foot}\hspace*{2ex}\insertsubsectionhead
+  \end{beamercolorbox}}%
+  \vskip0pt%
+}
+
+
+
+
+%\makeatother
+%\setbeamertemplate{headline}%
+%{
+%\ifnum \insertframenumber=1
+%\leavevmode%
+%\hbox{%
+%\begin{beamercolorbox}[wd=\paperwidth,ht=2.25ex,dp=1ex,center]{palette tertiary}%
+% \usebeamerfont{author in head/foot}\rhbinsertclassification%
+%\end{beamercolorbox}}%
+%\vskip0pt%
+%\else
+%\leavevmode%
+%\hbox{%
+%\begin{beamercolorbox}[wd=\paperwidth,ht=2.25ex,dp=1ex,left]{palette tertiary}%
+% \usebeamerfont{author in head/foot}\center\rhbinsertclassification%
+%\end{beamercolorbox}}%
+%\vskip0pt%
+%\fi
+%}
+
+\makeatletter
+
+
+
+\setbeamerfont{block title}{size={}}
+%\setbeamercolor{titlelike}{parent=structure,bg=white}
+\mode<all>
+
+\title{Example Presentation}
+\providecommand{\subtitle}[1]{}
+\subtitle{Pentesting Department}
+\author{David Lassig}
+\date{10.August 2018}
+
+\begin{document}
+\frame{\titlepage}
+
+\hypertarget{idee}{%
+\section{Idee}\label{idee}}
+
+\begin{frame}{Initiator}
+\protect\hypertarget{initiator}{}
+
+\includegraphics[width=3.125in,height=2.08333in]{images/lorawan_news.png}
+
+\end{frame}
+
+\begin{frame}{}
+\protect\hypertarget{section}{}
+
+\begin{figure}
+\hypertarget{id}{%
+\centering
+\includegraphics[width=3.125in,height=2.08333in]{images/lorawan_usecases.gif}
+\caption{Anwendungsmöglichkeiten für LoRaWAN}\label{id}
+}
+\end{figure}
+
+\end{frame}
+
+\begin{frame}{}
+\protect\hypertarget{section-1}{}
+
+\begin{figure}
+\hypertarget{id}{%
+\centering
+\includegraphics[width=3.125in,height=2.08333in]{images/lorawan_coverage.png}
+\caption{Beispiel Reichweite einzelner Gateway Antenne}\label{id}
+}
+\end{figure}
+
+\end{frame}
+
+\hypertarget{lorawan101}{%
+\section{LoRaWan101}\label{lorawan101}}
+
+\begin{frame}{Was ist LORA?}
+\protect\hypertarget{was-ist-lora}{}
+
+Funkgebundene Modulation zur Kommunikationsverbindung über Langstrecke
+in LPWAN\footnote<.->{Low-Power, Wide-Area-Network} (Layer 1) zur
+Optimierung von
+
+\begin{itemize}
+\tightlist
+\item
+  Batterielebensdauer
+\item
+  Robustheit
+\item
+  Entfernung
+\item
+  Kosten
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}{Modulation}
+\protect\hypertarget{modulation}{}
+
+\begin{itemize}
+\tightlist
+\item
+  LoRa benutzt CSS für robuste Übertragung.
+\end{itemize}
+
+\begin{figure}
+\hypertarget{id}{%
+\centering
+\includegraphics[width=3.125in,height=2.08333in]{images/css_example.png}
+\caption{Beispiel eines Chirps}\label{id}
+}
+\end{figure}
+
+\end{frame}
+
+\hypertarget{umsetzung}{%
+\section{Umsetzung}\label{umsetzung}}
+
+\begin{frame}{Architecture}
+\protect\hypertarget{architecture}{}
+
+\includegraphics[width=4.16667in,height=3.64583in]{images/sequence.pdf}
+
+\end{frame}
+
+\begin{frame}[fragile]{Set up RX}
+\protect\hypertarget{set-up-rx}{}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+    \KeywordTok{def}\NormalTok{ set_up_rx(}\VariableTok{self}\NormalTok{):}
+
+        \ControlFlowTok{if} \KeywordTok{not} \VariableTok{self}\NormalTok{.create_lora():}
+            \VariableTok{self}\NormalTok{.pdeb(}\StringTok{"Lora Socket failed"}\NormalTok{)}
+        \ControlFlowTok{else}\NormalTok{:}
+            \VariableTok{self}\NormalTok{.pdeb(}\StringTok{"Lora Socket Raw RX succesfully created"}\NormalTok{)}
+            \ControlFlowTok{if} \VariableTok{self}\NormalTok{.basemode }\OperatorTok{==} \StringTok{"master"}\NormalTok{:}
+                \VariableTok{self}\NormalTok{.s.settimeout(}\DecValTok{10}\NormalTok{)}
+\NormalTok{        time.sleep(}\DecValTok{1}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\end{frame}
+
+\begin{frame}[fragile]{Receive Mode}
+\protect\hypertarget{receive-mode}{}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+
+    \KeywordTok{def}\NormalTok{ receive_mode(}\VariableTok{self}\NormalTok{):}
+        \ControlFlowTok{try}\NormalTok{:}
+\NormalTok{            msg }\OperatorTok{=} \StringTok{""}
+            \VariableTok{self}\NormalTok{.set_up_rx()}
+            \ControlFlowTok{while}\NormalTok{(}\VariableTok{True}\NormalTok{):}
+\NormalTok{                result }\OperatorTok{=} \VariableTok{self}\NormalTok{.receive()}
+                \ControlFlowTok{if}\NormalTok{ result }\OperatorTok{==} \DecValTok{2}\NormalTok{: }\CommentTok{# receive part}
+\NormalTok{                    msg }\OperatorTok{+=} \VariableTok{self}\NormalTok{.msg}
+                    \VariableTok{self}\NormalTok{.send(}\StringTok{"ack"}\NormalTok{,}\VariableTok{self}\NormalTok{.cb_output_payload)}
+\NormalTok{                    time.sleep(}\DecValTok{1}\NormalTok{)}
+                \ControlFlowTok{if}\NormalTok{ result }\OperatorTok{==} \DecValTok{1}\NormalTok{: }\CommentTok{#receive finish}
+\NormalTok{                    msg }\OperatorTok{+=} \VariableTok{self}\NormalTok{.msg}
+                    \VariableTok{self}\NormalTok{.out_msg(msg,}\VariableTok{self}\NormalTok{.last_device_id)}
+                    \VariableTok{self}\NormalTok{.send(}\StringTok{"ack"}\NormalTok{,}\VariableTok{self}\NormalTok{.cb_output_payload)}
+\NormalTok{                    time.sleep(}\DecValTok{1}\NormalTok{)}
+                    \VariableTok{self}\NormalTok{.mode }\OperatorTok{=} \StringTok{"tx"}
+\NormalTok{                    time.sleep(}\DecValTok{1}\NormalTok{)}
+                    \ControlFlowTok{break}
+                \ControlFlowTok{if}\NormalTok{ result }\OperatorTok{==} \DecValTok{0}\NormalTok{: }\CommentTok{# wrong device_id}
+                    \VariableTok{self}\NormalTok{.pdeb(}\StringTok{"Not our cup of tea"}\NormalTok{)}
+\NormalTok{                    time.sleep(}\DecValTok{1}\NormalTok{)}
+                    \ControlFlowTok{break}
+        \ControlFlowTok{except}\NormalTok{ socket.timeout:}
+            \VariableTok{self}\NormalTok{.pdeb(}\StringTok{"Master got Receiver Timeout, changing back to TX"}\NormalTok{)}
+            \VariableTok{self}\NormalTok{.mode }\OperatorTok{=} \StringTok{"tx"}
+\end{Highlighting}
+\end{Shaded}
+
+\end{frame}
+
+\hypertarget{ausblick}{%
+\section{Ausblick}\label{ausblick}}
+
+\begin{frame}{ToDo}
+\protect\hypertarget{todo}{}
+
+\begin{itemize}
+\tightlist
+\item
+  ``Protokollhärtung'' - Wiederholtes Senden von Paketen
+\item
+  Datenhaltung und Auswertung im Webserver
+\item
+  Wechsel auf andere Hardwareplattform ( Dragino )
+\item
+  Wechsel auf andere Modulation ???
+\end{itemize}
+
+\end{frame}
+
+\end{document}

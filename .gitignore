@@ -127,3 +127,16 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+# LaTeX Beamer
+*.snm
+*.vrb
+*.nav
+*.out
+# LaTeX temporary files
+*.aux
+*.log
+*.toc
+
+# project specific ignores
+**/figure/
