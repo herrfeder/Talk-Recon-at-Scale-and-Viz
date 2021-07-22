@@ -42,6 +42,13 @@ header-packages:
 
 # Ablauf
 
+## Betrachtete Probleme
+
+  * Wie erzeuge ich effizient und skaliert Recon-Daten als Grundlage für weitere Schwachstellen-Untersuchung?
+  * Wie filtere ich diese Daten nach interessanten Informationen?
+  * Wie visualiere ich diese Daten für zusätzliche/grundlegende Erkenntnisse?
+
+
 ## Ablauf
 
 ![](images/ablauf.png){#id .class height=70%}
@@ -50,10 +57,11 @@ header-packages:
 
 ## Subdomain Methodologie - Passiv
   
-  * SSL-Zertifikate (Censys, GoogleCT, FacebookCT)
-  * Öffentliche Database APIs (BinaryEdge, SecurityTrails, Chaos, C99)
-  * Web Archive (Wayback, ArchiveIt)
-  * Scraping (Baido, Bing, Yahoo)
+  * Quellen für passives Subdomain-Crawling:
+    * SSL-Zertifikate (Censys, GoogleCT, FacebookCT)
+    * Öffentliche Database APIs (BinaryEdge, SecurityTrails, Chaos, C99)
+    * Web Archive (Wayback, ArchiveIt)
+    * Scraping (Baido, Bing, Yahoo)
 
   * --> [https://github.com/OWASP/Amass](https://github.com/OWASP/Amass)
 
@@ -64,11 +72,12 @@ amass enum -passive -d example.com -config path/amass_config.ini
 
 ## Subdomain Methodologie - Aktiv
 
-  * ReverseLookup
-  * Zonen-Transfer
-  * Bruteforce mit kontextbezogenen Permutationen
-  * CIDR und ASN Sweeping ([ASN?](https://bgpview.io/prefix/139.11.0.0/16)) 
-  * --> [https://github.com/OWASP/Amass](https://github.com/OWASP/Amass)
+  * aktive Methode für Subdomain-Crawling
+    * ReverseLookup
+    * Zonen-Transfer
+    * Bruteforce mit kontextbezogenen Permutationen
+    * CIDR und ASN Sweeping ([ASN?](https://bgpview.io/prefix/139.11.0.0/16)) 
+    * --> [https://github.com/OWASP/Amass](https://github.com/OWASP/Amass)
 
 ~~~{.bash}
 amass enum -active -d example.com -asn 1234 -cidr 10.0.0.0/20 -config path/amass_config.ini

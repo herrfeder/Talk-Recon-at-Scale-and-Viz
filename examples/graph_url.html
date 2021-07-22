@@ -1,266 +1,67 @@
-<!DOCTYPE HTML>
-<html>
 
-<head>
-    <meta charset="utf-8">
-
-    <title>Jupyter Notebook</title>
-    <link id="favicon" rel="shortcut icon" type="image/x-icon" href="/static/base/images/favicon.ico?v=845272bb369e7a52ef65139fafb905e3">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <link rel="stylesheet" href="/static/components/jquery-ui/themes/smoothness/jquery-ui.min.css?v=3c2a865c832a1322285c55c6ed99abb2" type="text/css" />
-    <link rel="stylesheet" href="/static/components/jquery-typeahead/dist/jquery.typeahead.min.css?v=7afb461de36accb1aa133a1710f5bc56" type="text/css" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    
-
-    <link rel="stylesheet" href="/static/style/style.min.css?v=e91a43337d7c294cc9fab2938fa723b3" type="text/css"/>
-    
-<link rel="stylesheet" href="/static/auth/css/override.css?v=ae668279c8a80c1d2e81fc28345169ee" type="text/css" />
-
-    <link rel="stylesheet" href="/custom/custom.css" type="text/css" />
-    <script src="/static/components/es6-promise/promise.min.js?v=f004a16cb856e0ff11781d01ec5ca8fe" type="text/javascript" charset="utf-8"></script>
-    <script src="/static/components/react/react.production.min.js?v=34f96ffc962a7deecc83037ccb582b58" type="text/javascript"></script>
-    <script src="/static/components/react/react-dom.production.min.js?v=b14d91fb641317cda38dbc9dbf985ab4" type="text/javascript"></script>
-    <script src="/static/components/create-react-class/index.js?v=94feb9971ce6d26211729abc43f96cd2" type="text/javascript"></script>
-    <script src="/static/components/requirejs/require.js?v=951f856e81496aaeec2e71a1c2c0d51f" type="text/javascript" charset="utf-8"></script>
-    <script>
-      require.config({
-          
-          urlArgs: "v=20210721051843",
-          
-          baseUrl: '/static/',
-          paths: {
-            'auth/js/main': 'auth/js/main.min',
-            custom : '/custom',
-            nbextensions : '/nbextensions',
-            kernelspecs : '/kernelspecs',
-            underscore : 'components/underscore/underscore-min',
-            backbone : 'components/backbone/backbone-min',
-            jed: 'components/jed/jed',
-            jquery: 'components/jquery/jquery.min',
-            json: 'components/requirejs-plugins/src/json',
-            text: 'components/requirejs-text/text',
-            bootstrap: 'components/bootstrap/dist/js/bootstrap.min',
-            bootstraptour: 'components/bootstrap-tour/build/js/bootstrap-tour.min',
-            'jquery-ui': 'components/jquery-ui/jquery-ui.min',
-            moment: 'components/moment/min/moment-with-locales',
-            codemirror: 'components/codemirror',
-            termjs: 'components/xterm.js/xterm',
-            typeahead: 'components/jquery-typeahead/dist/jquery.typeahead.min',
-          },
-          map: { // for backward compatibility
-              "*": {
-                  "jqueryui": "jquery-ui",
-              }
-          },
-          shim: {
-            typeahead: {
-              deps: ["jquery"],
-              exports: "typeahead"
-            },
-            underscore: {
-              exports: '_'
-            },
-            backbone: {
-              deps: ["underscore", "jquery"],
-              exports: "Backbone"
-            },
-            bootstrap: {
-              deps: ["jquery"],
-              exports: "bootstrap"
-            },
-            bootstraptour: {
-              deps: ["bootstrap"],
-              exports: "Tour"
-            },
-            "jquery-ui": {
-              deps: ["jquery"],
-              exports: "$"
-            }
-          },
-          waitSeconds: 30,
-      });
-
-      require.config({
-          map: {
-              '*':{
-                'contents': 'services/contents',
-              }
-          }
-      });
-
-      // error-catching custom.js shim.
-      define("custom", function (require, exports, module) {
-          try {
-              var custom = require('custom/custom');
-              console.debug('loaded custom.js');
-              return custom;
-          } catch (e) {
-              console.error("error loading custom.js", e);
-              return {};
-          }
-      })
-
-    document.nbjs_translations = {"domain": "nbjs", "locale_data": {"nbjs": {"": {"domain": "nbjs"}}}};
-    document.documentElement.lang = navigator.language.toLowerCase();
-    </script>
-
-    
-    
-
-</head>
-
-<body class=""
- 
-  
- 
-dir="ltr">
-
-<noscript>
-    <div id='noscript'>
-      Jupyter Notebook requires JavaScript.<br>
-      Please enable it to proceed. 
-  </div>
-</noscript>
-
-<div id="header" role="navigation" aria-label="Top Menu">
-  <div id="header-container" class="container">
-  <div id="ipython_notebook" class="nav navbar-brand"><a href="/tree" title='dashboard'>
-      <img src='/static/base/images/logo.png?v=5c365cfd50fcc6b297b69a91c1b62c2d' alt='Jupyter Notebook'/>
-  </a></div>
-
-  
-  
-  
-  
-  
-  
-
-
-  
-  
-  </div>
-  <div class="header-bar"></div>
-
-  
-  
-</div>
-
-<div id="site">
-
-
-<div id="ipython-main-app" class="container">
-
-    
-    
-    <div class="row">
-    <div class="navbar col-sm-8">
-      <div class="navbar-inner">
-        <div class="container">
-          <div class="center-nav">
-            <form action="/login?next=%2Ffiles%2FTalk-Recon-at-Scale-and-Viz%2Fvisualisation%2Ffigure%2Fgraph-d49c98e7-2944-40a5-907d-ae42ab65a6e3.html" method="post" class="navbar-form pull-left">
-              <input type="hidden" name="_xsrf" value="2|babf1b5e|ac2a4b0d796223f8878259e7bbd6ef2f|1626867661"/>
-              
-                <label for="password_input"><strong>Password or token:</strong></label>
-              
-              <input type="password" name="password" id="password_input" class="form-control">
-              <button type="submit" class="btn btn-default" id="login_submit">Log in</button>
-            </form>
-          </div>
-        </div>
-      </div>
-    </div>
-    </div>
-    
-    
-    
-    
-    <div class="col-sm-6 col-sm-offset-3 text-left rendered_html">
-      <h3>
-        Token authentication is enabled
-      </h3>
-      <p>
-        If no password has been configured, you need to open the notebook
-        server with its login token in the URL, or paste it above.
-        This requirement will be lifted if you
-        <b><a href='https://jupyter-notebook.readthedocs.io/en/stable/public_server.html'>
-            enable a password</a></b>.
-      </p>
-      <p>
-        The command:
-        <pre>jupyter notebook list</pre>
-        will show you the URLs of running servers with their tokens,
-        which you can copy and paste into your browser. For example:
-      </p>
-      <pre>Currently running servers:
-http://localhost:8888/?token=c8de56fa... :: /Users/you/notebooks
-</pre>
-      <p>
-        or you can paste just the token value into the password field on this
-        page.
-      </p>
-      <p>
-        See
-        <b><a
-         href='https://jupyter-notebook.readthedocs.io/en/stable/public_server.html'>
-                the documentation on how to enable a password</a>
-        </b>
-        in place of token authentication,
-        if you would like to avoid dealing with random tokens.
-      </p>
-      <p>
-        Cookies are required for authenticated access to notebooks.
-      </p>
+    <html>
+    <head>
+      <script type="text/javascript" src=https://cdnjs.cloudflare.com/ajax/libs/vis/4.21.0/vis.min.js></script>
+      <link href=https://cdnjs.cloudflare.com/ajax/libs/vis/4.21.0/vis.min.css rel="stylesheet" type="text/css">
+    </head>
+    <body>
+    <div id="d49c98e7-2944-40a5-907d-ae42ab65a6e3"></div>
+    <script type="text/javascript">
+      var nodes = new vis.DataSet([{"id": 1712, "label": "internal-network", "group": "200", "size": 28, "title": "HTTP_TYPE:200 NUMBER:1<br>internal-network", "color": null}, {"id": 1604, "label": "en", "group": "200", "size": 28, "title": "HTTP_TYPE:200 NUMBER:1<br>en", "color": null}, {"id": 1671, "label": "index.php?brick_id=LjT7Q0UFdmB7ppI3&action=setlanguage&language=de", "group": "200", "size": 28, "title": "HTTP_TYPE:200 NUMBER:1<br>index.php?brick_id=LjT7Q0UFdmB7ppI3&action=setlanguage&language=de", "color": null}, {"id": 1571, "label": "rz", "group": "URL", "size": 25, "title": "rz", "color": null}, {"id": 1654, "label": "index_ndVEN23DHwTisEkp.html?brick_id=ndVEN23DHwTisEkp", "group": "410", "size": 28, "title": "HTTP_TYPE:410 NUMBER:1<br>index_ndVEN23DHwTisEkp.html?brick_id=ndVEN23DHwTisEkp", "color": null}, {"id": 1711, "label": "computing-services", "group": "200", "size": 28, "title": "HTTP_TYPE:200 NUMBER:1<br>computing-services", "color": null}, {"id": 1747, "label": "680", "group": "URL", "size": 25, "title": "680", "color": null}, {"id": 1718, "label": "sites", "group": "URL", "size": 25, "title": "sites", "color": null}, {"id": 1579, "label": "ringvorlesung-tradition-wird-gemacht", "group": "200", "size": 28, "title": "HTTP_TYPE:200 NUMBER:1<br>ringvorlesung-tradition-wird-gemacht", "color": null}, {"id": 1550, "label": "www.hsu-hh.de", "group": "URL", "size": 25, "title": "www.hsu-hh.de", "color": null}, {"id": 1577, "label": "reisen-psychologie-mit-prof-erb", "group": "200", "size": 28, "title": "HTTP_TYPE:200 NUMBER:1<br>reisen-psychologie-mit-prof-erb", "color": null}, {"id": 1692, "label": "index_9Zy3b8KHKfcgTS0I.html", "group": "200", "size": 28, "title": "HTTP_TYPE:200 NUMBER:1<br>index_9Zy3b8KHKfcgTS0I.html", "color": null}, {"id": 1618, "label": "events", "group": "URL", "size": 25, "title": "events", "color": null}, {"id": 1569, "label": "rt", "group": "URL", "size": 25, "title": "rt", "color": null}, {"id": 1754, "label": "706", "group": "URL", "size": 25, "title": "706", "color": null}, {"id": 1647, "label": "index_sUPKvXZ2sjybUJ7c.html?brick_id=sUPKvXZ2sjybUJ7c", "group": "200", "size": 28, "title": "HTTP_TYPE:200 NUMBER:1<br>index_sUPKvXZ2sjybUJ7c.html?brick_id=sUPKvXZ2sjybUJ7c", "color": null}, {"id": 1738, "label": "767", "group": "URL", "size": 25, "title": "767", "color": null}, {"id": 1725, "label": "franze-wilhelm-m-a", "group": "200", "size": 28, "title": "HTTP_TYPE:200 NUMBER:1<br>franze-wilhelm-m-a", "color": null}, {"id": 1703, "label": "team-2", "group": "200", "size": 28, "title": "HTTP_TYPE:200 NUMBER:1<br>team-2", "color": null}, {"id": 1740, "label": "658", "group": "URL", "size": 25, "title": "658", "color": null}, {"id": 1697, "label": "news-archiv", "group": "301", "size": 28, "title": "HTTP_TYPE:301 NUMBER:1<br>news-archiv", "color": null}, {"id": 1601, "label": "professur", "group": "URL", "size": 25, "title": "professur", "color": null}, {"id": 1686, "label": "index_I2nSvFcvbNY9KEIM.html?brick_id=I2nSvFcvbNY9KEIM", "group": "200", "size": 28, "title": "HTTP_TYPE:200 NUMBER:1<br>index_I2nSvFcvbNY9KEIM.html?brick_id=I2nSvFcvbNY9KEIM", "color": null}, {"id": 1567, "label": "imb", "group": "URL", "size": 25, "title": "imb", "color": null}, {"id": 1554, "label": "geiso", "group": "URL", "size": 25, "title": "geiso", "color": null}, {"id": 1649, "label": "index_qHqRTY4KWCWToC00.html?brick_id=qHqRTY4KWCWToC00", "group": "200", "size": 28, "title": "HTTP_TYPE:200 NUMBER:1<br>index_qHqRTY4KWCWToC00.html?brick_id=qHqRTY4KWCWToC00", "color": null}, {"id": 1730, "label": "anne-hoss-m-a", "group": "200", "size": 28, "title": "HTTP_TYPE:200 NUMBER:1<br>anne-hoss-m-a", "color": null}, {"id": 1701, "label": "lectures", "group": "200", "size": 28, "title": "HTTP_TYPE:200 NUMBER:1<br>lectures", "color": null}, {"id": 1570, "label": "psychologische-tests", "group": "URL", "size": 25, "title": "psychologische-tests", "color": null}, {"id": 1630, "label": "index_XOlYf9xuhvu5cqPK.html?brick_id=XOlYf9xuhvu5cqPK", "group": "404", "size": 28, "title": "HTTP_TYPE:404 NUMBER:1<br>index_XOlYf9xuhvu5cqPK.html?brick_id=XOlYf9xuhvu5cqPK", "color": null}, {"id": 1758, "label": "2021", "group": "URL", "size": 25, "title": "2021", "color": null}, {"id": 1695, "label": "uploads", "group": "URL", "size": 25, "title": "uploads", "color": null}, {"id": 1720, "label": "hsu", "group": "URL", "size": 25, "title": "hsu", "color": null}, {"id": 1698, "label": "themes", "group": "URL", "size": 25, "title": "themes", "color": null}, {"id": 1564, "label": "get", "group": "URL", "size": 25, "title": "get", "color": null}, {"id": 1693, "label": "index.php?brick_id=WzXoo8wgdEa3iCyB", "group": "404", "size": 28, "title": "HTTP_TYPE:404 NUMBER:1<br>index.php?brick_id=WzXoo8wgdEa3iCyB", "color": null}, {"id": 1732, "label": "talks", "group": "200", "size": 28, "title": "HTTP_TYPE:200 NUMBER:1<br>talks", "color": null}, {"id": 1717, "label": "prof-dr-gary-s-schaal-2", "group": "URL", "size": 25, "title": "prof-dr-gary-s-schaal-2", "color": null}, {"id": 1648, "label": "index_lm6CTGvSEl77Lb28.html?brick_id=lm6CTGvSEl77Lb28", "group": "410", "size": 28, "title": "HTTP_TYPE:410 NUMBER:1<br>index_lm6CTGvSEl77Lb28.html?brick_id=lm6CTGvSEl77Lb28", "color": null}, {"id": 1576, "label": "robert-weidner-gewinnt-den-academics-nachwuchspreis-2017", "group": "200", "size": 28, "title": "HTTP_TYPE:200 NUMBER:1<br>robert-weidner-gewinnt-den-academics-nachwuchspreis-2017", "color": null}, {"id": 1737, "label": "780", "group": "URL", "size": 25, "title": "780", "color": null}, {"id": 1578, "label": "richtig-schenken", "group": "200", "size": 28, "title": "HTTP_TYPE:200 NUMBER:1<br>richtig-schenken", "color": null}, {"id": 1679, "label": "index_MTfu4gC1GOfIrUF6.html?brick_id=MTfu4gC1GOfIrUF6", "group": "200", "size": 28, "title": "HTTP_TYPE:200 NUMBER:1<br>index_MTfu4gC1GOfIrUF6.html?brick_id=MTfu4gC1GOfIrUF6", "color": null}, {"id": 1597, "label": "mit-dem-koerper-im-krieg", "group": "200", "size": 31, "title": "HTTP_TYPE:200 NUMBER:2<br>mit-dem-koerper-im-krieg", "color": null}, {"id": 1559, "label": "event", "group": "URL", "size": 25, "title": "event", "color": null}, {"id": 1561, "label": "ordnung", "group": "URL", "size": 25, "title": "ordnung", "color": null}, {"id": 1584, "label": "qa-sessions-zur-studieninformation", "group": "200", "size": 28, "title": "HTTP_TYPE:200 NUMBER:1<br>qa-sessions-zur-studieninformation", "color": null}, {"id": 1581, "label": "robert-weidner-ist-nachwuchswissenschaftler-des-jahres-2", "group": "200", "size": 28, "title": "HTTP_TYPE:200 NUMBER:1<br>robert-weidner-ist-nachwuchswissenschaftler-des-jahres-2", "color": null}, {"id": 1594, "label": "gleichberechtigung-und-demokratie-gleichberechtigung-in-der-demokratie-rechts-wissenschaftliche-annaeherungen", "group": "200", "size": 31, "title": "HTTP_TYPE:200 NUMBER:2<br>gleichberechtigung-und-demokratie-gleichberechtigung-in-der-demokratie-rechts-wissenschaftliche-annaeherungen", "color": null}, {"id": 1651, "label": "index_oCOwA4jqprVrX4kL.html?brick_id=oCOwA4jqprVrX4kL", "group": "200", "size": 28, "title": "HTTP_TYPE:200 NUMBER:1<br>index_oCOwA4jqprVrX4kL.html?brick_id=oCOwA4jqprVrX4kL", "color": null}, {"id": 1724, "label": "philipp-weinmann", "group": "200", "size": 28, "title": "HTTP_TYPE:200 NUMBER:1<br>philipp-weinmann", "color": null}, {"id": 1746, "label": "764", "group": "URL", "size": 25, "title": "764", "color": null}, {"id": 1759, "label": "2020", "group": "URL", "size": 25, "title": "2020", "color": null}, {"id": 1668, "label": "index_8Fb8YBjfLY0Y78vC.html?brick_id=8Fb8YBjfLY0Y78vC", "group": "200", "size": 28, "title": "HTTP_TYPE:200 NUMBER:1<br>index_8Fb8YBjfLY0Y78vC.html?brick_id=8Fb8YBjfLY0Y78vC", "color": null}, {"id": 1696, "label": "plugins", "group": "URL", "size": 25, "title": "plugins", "color": null}, {"id": 1588, "label": "wp-content", "group": "URL", "size": 25, "title": "wp-content", "color": null}, {"id": 1677, "label": "index_N1L8XfiqV4C2QbrD.html?brick_id=N1L8XfiqV4C2QbrD", "group": "200", "size": 28, "title": "HTTP_TYPE:200 NUMBER:1<br>index_N1L8XfiqV4C2QbrD.html?brick_id=N1L8XfiqV4C2QbrD", "color": null}, {"id": 1552, "label": "weiterbildung", "group": "URL", "size": 25, "title": "weiterbildung", "color": null}, {"id": 1726, "label": "dr-sebastian-dumm", "group": "200", "size": 28, "title": "HTTP_TYPE:200 NUMBER:1<br>dr-sebastian-dumm", "color": null}, {"id": 1706, "label": "team", "group": "200", "size": 28, "title": "HTTP_TYPE:200 NUMBER:1<br>team", "color": null}, {"id": 1614, "label": "category", "group": "URL", "size": 25, "title": "category", "color": null}, {"id": 1681, "label": "index_L6KmqWaXB6eYDHaZ.html?brick_id=L6KmqWaXB6eYDHaZ", "group": "404", "size": 28, "title": "HTTP_TYPE:404 NUMBER:1<br>index_L6KmqWaXB6eYDHaZ.html?brick_id=L6KmqWaXB6eYDHaZ", "color": null}, {"id": 1688, "label": "index_Fm3zwsIpOcCcLr6S.html?brick_id=Fm3zwsIpOcCcLr6S", "group": "200", "size": 28, "title": "HTTP_TYPE:200 NUMBER:1<br>index_Fm3zwsIpOcCcLr6S.html?brick_id=Fm3zwsIpOcCcLr6S", "color": null}, {"id": 1587, "label": "politiktheorie", "group": "URL", "size": 25, "title": "politiktheorie", "color": null}, {"id": 1568, "label": "vw", "group": "URL", "size": 25, "title": "vw", "color": null}, {"id": 1702, "label": "research", "group": "200", "size": 28, "title": "HTTP_TYPE:200 NUMBER:1<br>research", "color": null}, {"id": 1699, "label": "wlwmanifest.xml", "group": "200", "size": 28, "title": "HTTP_TYPE:200 NUMBER:1<br>wlwmanifest.xml", "color": null}, {"id": 1608, "label": "wp-includes", "group": "URL", "size": 25, "title": "wp-includes", "color": null}, {"id": 1774, "label": "09", "group": "404", "size": 31, "title": "HTTP_TYPE:404 NUMBER:2<br>09", "color": null}, {"id": 1596, "label": "its-risky-therefore-i-do-it", "group": "200", "size": 31, "title": "HTTP_TYPE:200 NUMBER:2<br>its-risky-therefore-i-do-it", "color": null}, {"id": 1562, "label": "juenemann", "group": "URL", "size": 25, "title": "juenemann", "color": null}, {"id": 1644, "label": "index_ty4JaEFlWHQYTAyc.html?brick_id=ty4JaEFlWHQYTAyc", "group": "200", "size": 28, "title": "HTTP_TYPE:200 NUMBER:1<br>index_ty4JaEFlWHQYTAyc.html?brick_id=ty4JaEFlWHQYTAyc", "color": null}, {"id": 1645, "label": "index_tYRp0bQ9SKA9i0LG.html?brick_id=tYRp0bQ9SKA9i0LG", "group": "200", "size": 28, "title": "HTTP_TYPE:200 NUMBER:1<br>index_tYRp0bQ9SKA9i0LG.html?brick_id=tYRp0bQ9SKA9i0LG", "color": null}, {"id": 1598, "label": "personalversammlung", "group": "200", "size": 31, "title": "HTTP_TYPE:200 NUMBER:2<br>personalversammlung", "color": null}, {"id": 1710, "label": "ki-inspektionsdrohne", "group": "200", "size": 28, "title": "HTTP_TYPE:200 NUMBER:1<br>ki-inspektionsdrohne", "color": null}, {"id": 1615, "label": "forschung", "group": "URL", "size": 25, "title": "forschung", "color": null}, {"id": 1734, "label": "publications", "group": "200", "size": 28, "title": "HTTP_TYPE:200 NUMBER:1<br>publications", "color": null}, {"id": 1761, "label": "fontawesome-webfont.eot", "group": "200", "size": 28, "title": "HTTP_TYPE:200 NUMBER:1<br>fontawesome-webfont.eot", "color": null}, {"id": 1753, "label": "fonts", "group": "URL", "size": 25, "title": "fonts", "color": null}, {"id": 1591, "label": "die-steigende-autoritaet-internationaler-organisationen", "group": "200", "size": 31, "title": "HTTP_TYPE:200 NUMBER:2<br>die-steigende-autoritaet-internationaler-organisationen", "color": null}, {"id": 1742, "label": "740", "group": "URL", "size": 25, "title": "740", "color": null}, {"id": 1667, "label": "index.php?brick_id=oNpWdgVyyXJDB5fZ&action=showitem&item=303d884623aa56ff09f749a6cd743982", "group": "200", "size": 28, "title": "HTTP_TYPE:200 NUMBER:1<br>index.php?brick_id=oNpWdgVyyXJDB5fZ&action=showitem&item=303d884623aa56ff09f749a6cd743982", "color": null}, {"id": 1575, "label": "reiner", "group": "URL", "size": 25, "title": "reiner", "color": null}, {"id": 1636, "label": "index_jHLpupK9qdNTfqZu.html?brick_id=jHLpupK9qdNTfqZu", "group": "410", "size": 28, "title": "HTTP_TYPE:410 NUMBER:1<br>index_jHLpupK9qdNTfqZu.html?brick_id=jHLpupK9qdNTfqZu", "color": null}, {"id": 1583, "label": "qualitaetssiegel-fuer-bacherlorstudiengang-psychologie", "group": "200", "size": 28, "title": "HTTP_TYPE:200 NUMBER:1<br>qualitaetssiegel-fuer-bacherlorstudiengang-psychologie", "color": null}, {"id": 1708, "label": "gottlieb_300", "group": "200", "size": 28, "title": "HTTP_TYPE:200 NUMBER:1<br>gottlieb_300", "color": null}, {"id": 1670, "label": "index.php?brick_id=QqvynAiztAB8c4v6&action=setlanguage&language=en", "group": "200", "size": 28, "title": "HTTP_TYPE:200 NUMBER:1<br>index.php?brick_id=QqvynAiztAB8c4v6&action=setlanguage&language=en", "color": null}, {"id": 1572, "label": "psychbst", "group": "URL", "size": 25, "title": "psychbst", "color": null}, {"id": 1713, "label": "?brick_id=K9BLyaLoUgVzTGvW", "group": "200", "size": 28, "title": "HTTP_TYPE:200 NUMBER:1<br>?brick_id=K9BLyaLoUgVzTGvW", "color": null}, {"id": 1683, "label": "index_K9BLyaLoUgVzTGvW.html", "group": "URL", "size": 25, "title": "index_K9BLyaLoUgVzTGvW.html", "color": null}, {"id": 1661, "label": "index_3pwbUNYzVnnfC2Km.html?brick_id=3pwbUNYzVnnfC2Km", "group": "200", "size": 28, "title": "HTTP_TYPE:200 NUMBER:1<br>index_3pwbUNYzVnnfC2Km.html?brick_id=3pwbUNYzVnnfC2Km", "color": null}, {"id": 1760, "label": "glyphicons-halflings-regular.ttf", "group": "200", "size": 28, "title": "HTTP_TYPE:200 NUMBER:1<br>glyphicons-halflings-regular.ttf", "color": null}, {"id": 1574, "label": "psychologie-der-aesthetik", "group": "200", "size": 28, "title": "HTTP_TYPE:200 NUMBER:1<br>psychologie-der-aesthetik", "color": null}, {"id": 1592, "label": "trimesterbeginn", "group": "200", "size": 31, "title": "HTTP_TYPE:200 NUMBER:2<br>trimesterbeginn", "color": null}, {"id": 1639, "label": "index_tOb2Hb1hB1TYXRm6.html?brick_id=tOb2Hb1hB1TYXRm6", "group": "200", "size": 28, "title": "HTTP_TYPE:200 NUMBER:1<br>index_tOb2Hb1hB1TYXRm6.html?brick_id=tOb2Hb1hB1TYXRm6", "color": null}, {"id": 1675, "label": "index_O2cphEoIFiO6tFPW.html?brick_id=O2cphEoIFiO6tFPW", "group": "200", "size": 28, "title": "HTTP_TYPE:200 NUMBER:1<br>index_O2cphEoIFiO6tFPW.html?brick_id=O2cphEoIFiO6tFPW", "color": null}, {"id": 1595, "label": "nichtpolizeiliche-gefahrenabwehr-die-organisation-der-bundeswehr-als-partner-im-katastrophenschutz", "group": "200", "size": 31, "title": "HTTP_TYPE:200 NUMBER:2<br>nichtpolizeiliche-gefahrenabwehr-die-organisation-der-bundeswehr-als-partner-im-katastrophenschutz", "color": null}, {"id": 1745, "label": "549", "group": "URL", "size": 25, "title": "549", "color": null}, {"id": 1687, "label": "index_G59Fy5cQc7Gynydd.html?action=setlanguage&language=de", "group": "200", "size": 28, "title": "HTTP_TYPE:200 NUMBER:1<br>index_G59Fy5cQc7Gynydd.html?action=setlanguage&language=de", "color": null}, {"id": 1669, "label": "index.php?brick_id=ignA7tirX3xvXV5x&action=setlanguage&language=en", "group": "200", "size": 28, "title": "HTTP_TYPE:200 NUMBER:1<br>index.php?brick_id=ignA7tirX3xvXV5x&action=setlanguage&language=en", "color": null}, {"id": 1556, "label": "systpaed", "group": "URL", "size": 25, "title": "systpaed", "color": null}, {"id": 1631, "label": "index_WlvfgUD1u9wIcHSz.html?brick_id=WlvfgUD1u9wIcHSz", "group": "200", "size": 28, "title": "HTTP_TYPE:200 NUMBER:1<br>index_WlvfgUD1u9wIcHSz.html?brick_id=WlvfgUD1u9wIcHSz", "color": null}, {"id": 1756, "label": "2019", "group": "URL", "size": 25, "title": "2019", "color": null}, {"id": 1722, "label": "research", "group": "200", "size": 28, "title": "HTTP_TYPE:200 NUMBER:1<br>research", "color": null}, {"id": 1704, "label": "category", "group": "URL", "size": 25, "title": "category", "color": null}, {"id": 1580, "label": "robert-weidner-ist-nachwuchswissenschaftler-des-jahres", "group": "200", "size": 28, "title": "HTTP_TYPE:200 NUMBER:1<br>robert-weidner-ist-nachwuchswissenschaftler-des-jahres", "color": null}, {"id": 1673, "label": "index_7cOqXqfIRMY9xChY.html?brick_id=7cOqXqfIRMY9xChY", "group": "200", "size": 28, "title": "HTTP_TYPE:200 NUMBER:1<br>index_7cOqXqfIRMY9xChY.html?brick_id=7cOqXqfIRMY9xChY", "color": null}, {"id": 1721, "label": "team-en", "group": "200", "size": 28, "title": "HTTP_TYPE:200 NUMBER:1<br>team-en", "color": null}, {"id": 1624, "label": "index_dpdkotE6vm12GZcg.html?brick_id=dpdkotE6vm12GZcg", "group": "410", "size": 28, "title": "HTTP_TYPE:410 NUMBER:1<br>index_dpdkotE6vm12GZcg.html?brick_id=dpdkotE6vm12GZcg", "color": null}, {"id": 1625, "label": "index_djFHVjNKUaVEUrX2.html?brick_id=djFHVjNKUaVEUrX2", "group": "410", "size": 28, "title": "HTTP_TYPE:410 NUMBER:1<br>index_djFHVjNKUaVEUrX2.html?brick_id=djFHVjNKUaVEUrX2", "color": null}, {"id": 1641, "label": "index_y9xRGQFvC1hz1X4E.html?brick_id=y9xRGQFvC1hz1X4E", "group": "200", "size": 28, "title": "HTTP_TYPE:200 NUMBER:1<br>index_y9xRGQFvC1hz1X4E.html?brick_id=y9xRGQFvC1hz1X4E", "color": null}, {"id": 1629, "label": "index_ZOWkVkcOVrsoFUo4.html?brick_id=ZOWkVkcOVrsoFUo4", "group": "404", "size": 28, "title": "HTTP_TYPE:404 NUMBER:1<br>index_ZOWkVkcOVrsoFUo4.html?brick_id=ZOWkVkcOVrsoFUo4", "color": null}, {"id": 1767, "label": "11", "group": "200", "size": 40, "title": "HTTP_TYPE:200 NUMBER:5<br>11", "color": null}, {"id": 1757, "label": "2017", "group": "URL", "size": 25, "title": "2017", "color": null}, {"id": 1684, "label": "index_I5o22YQtrzcafJwk.html?brick_id=I5o22YQtrzcafJwk", "group": "200", "size": 28, "title": "HTTP_TYPE:200 NUMBER:1<br>index_I5o22YQtrzcafJwk.html?brick_id=I5o22YQtrzcafJwk", "color": null}, {"id": 1672, "label": "index.php?brick_id=K9BLyaLoUgVzTGvW&action=setlanguage&language=en", "group": "200", "size": 28, "title": "HTTP_TYPE:200 NUMBER:1<br>index.php?brick_id=K9BLyaLoUgVzTGvW&action=setlanguage&language=en", "color": null}, {"id": 1585, "label": "FelixW%C3%BCrkert", "group": "404", "size": 28, "title": "HTTP_TYPE:404 NUMBER:1<br>FelixW%C3%BCrkert", "color": null}, {"id": 1551, "label": "hsu-hh.academia.edu", "group": "URL", "size": 25, "title": "hsu-hh.academia.edu", "color": null}, {"id": 1723, "label": "feed", "group": "200", "size": 28, "title": "HTTP_TYPE:200 NUMBER:1<br>feed", "color": null}, {"id": 1705, "label": "comments", "group": "URL", "size": 25, "title": "comments", "color": null}, {"id": 1739, "label": "497", "group": "URL", "size": 25, "title": "497", "color": null}, {"id": 1694, "label": "index_JCTHcgSEHbctswoY.html?brick_id=JCTHcgSEHbctswoY", "group": "200", "size": 28, "title": "HTTP_TYPE:200 NUMBER:1<br>index_JCTHcgSEHbctswoY.html?brick_id=JCTHcgSEHbctswoY", "color": null}, {"id": 1657, "label": "index_PqRnxqsG6ocgaIYY.html?brick_id=PqRnxqsG6ocgaIYY", "group": "200", "size": 28, "title": "HTTP_TYPE:200 NUMBER:1<br>index_PqRnxqsG6ocgaIYY.html?brick_id=PqRnxqsG6ocgaIYY", "color": null}, {"id": 1593, "label": "solidaritaetslauf", "group": "200", "size": 31, "title": "HTTP_TYPE:200 NUMBER:2<br>solidaritaetslauf", "color": null}, {"id": 1616, "label": "aktuelles", "group": "200", "size": 28, "title": "HTTP_TYPE:200 NUMBER:1<br>aktuelles", "color": null}, {"id": 1611, "label": "comments", "group": "URL", "size": 25, "title": "comments", "color": null}, {"id": 1660, "label": "index_6ZK4VN0T8k89BJzy.html?brick_id=6ZK4VN0T8k89BJzy", "group": "200", "size": 28, "title": "HTTP_TYPE:200 NUMBER:1<br>index_6ZK4VN0T8k89BJzy.html?brick_id=6ZK4VN0T8k89BJzy", "color": null}, {"id": 1640, "label": "index_zXkE8Ykkhw3T4qOR.html?brick_id=zXkE8Ykkhw3T4qOR", "group": "200", "size": 28, "title": "HTTP_TYPE:200 NUMBER:1<br>index_zXkE8Ykkhw3T4qOR.html?brick_id=zXkE8Ykkhw3T4qOR", "color": null}, {"id": 1632, "label": "index_V3ElpnyZ3D99ERqf.html?brick_id=V3ElpnyZ3D99ERqf", "group": "200", "size": 28, "title": "HTTP_TYPE:200 NUMBER:1<br>index_V3ElpnyZ3D99ERqf.html?brick_id=V3ElpnyZ3D99ERqf", "color": null}, {"id": 1662, "label": "index_2oVuIgRaEqj3mF3Z.html?brick_id=2oVuIgRaEqj3mF3Z", "group": "200", "size": 28, "title": "HTTP_TYPE:200 NUMBER:1<br>index_2oVuIgRaEqj3mF3Z.html?brick_id=2oVuIgRaEqj3mF3Z", "color": null}, {"id": 1633, "label": "index_UBDhrNbbxq8DgFPH.html?brick_id=UBDhrNbbxq8DgFPH", "group": "404", "size": 28, "title": "HTTP_TYPE:404 NUMBER:1<br>index_UBDhrNbbxq8DgFPH.html?brick_id=UBDhrNbbxq8DgFPH", "color": null}, {"id": 1678, "label": "index_MdsC9FNhMTZuttxi.html?brick_id=MdsC9FNhMTZuttxi", "group": "404", "size": 28, "title": "HTTP_TYPE:404 NUMBER:1<br>index_MdsC9FNhMTZuttxi.html?brick_id=MdsC9FNhMTZuttxi", "color": null}, {"id": 1612, "label": "forschung-etc", "group": "200", "size": 28, "title": "HTTP_TYPE:200 NUMBER:1<br>forschung-etc", "color": null}, {"id": 1755, "label": "2018", "group": "URL", "size": 25, "title": "2018", "color": null}, {"id": 1617, "label": "?p=547", "group": "200", "size": 28, "title": "HTTP_TYPE:200 NUMBER:1<br>?p=547", "color": null}, {"id": 1714, "label": "teaching", "group": "200", "size": 28, "title": "HTTP_TYPE:200 NUMBER:1<br>teaching", "color": null}, {"id": 1691, "label": "index_B8ZEHyKoKiibk9I4.html?brick_id=B8ZEHyKoKiibk9I4", "group": "200", "size": 28, "title": "HTTP_TYPE:200 NUMBER:1<br>index_B8ZEHyKoKiibk9I4.html?brick_id=B8ZEHyKoKiibk9I4", "color": null}, {"id": 1607, "label": "lehre", "group": "200", "size": 28, "title": "HTTP_TYPE:200 NUMBER:1<br>lehre", "color": null}, {"id": 1750, "label": "575", "group": "URL", "size": 25, "title": "575", "color": null}, {"id": 1656, "label": "index_S08yS2AXvprBVayZ.html?brick_id=S08yS2AXvprBVayZ", "group": "404", "size": 28, "title": "HTTP_TYPE:404 NUMBER:1<br>index_S08yS2AXvprBVayZ.html?brick_id=S08yS2AXvprBVayZ", "color": null}, {"id": 1751, "label": "677", "group": "URL", "size": 25, "title": "677", "color": null}, {"id": 1623, "label": "index_drZ7G6KpFLu6xNzz.html?brick_id=drZ7G6KpFLu6xNzz", "group": "404", "size": 28, "title": "HTTP_TYPE:404 NUMBER:1<br>index_drZ7G6KpFLu6xNzz.html?brick_id=drZ7G6KpFLu6xNzz", "color": null}, {"id": 1735, "label": "journal-boards", "group": "200", "size": 28, "title": "HTTP_TYPE:200 NUMBER:1<br>journal-boards", "color": null}, {"id": 1716, "label": "research-and-projects", "group": "URL", "size": 25, "title": "research-and-projects", "color": null}, {"id": 1653, "label": "index_ng6c1s5UrS3Ixjag.html", "group": "404", "size": 28, "title": "HTTP_TYPE:404 NUMBER:1<br>index_ng6c1s5UrS3Ixjag.html", "color": null}, {"id": 1762, "label": "fontawesome-webfont.eot?v=4.2.0", "group": "200", "size": 28, "title": "HTTP_TYPE:200 NUMBER:1<br>fontawesome-webfont.eot?v=4.2.0", "color": null}, {"id": 1674, "label": "index_8Qp1PqH5VwQ89kQN.html?brick_id=8Qp1PqH5VwQ89kQN", "group": "200", "size": 28, "title": "HTTP_TYPE:200 NUMBER:1<br>index_8Qp1PqH5VwQ89kQN.html?brick_id=8Qp1PqH5VwQ89kQN", "color": null}, {"id": 1736, "label": "cv", "group": "200", "size": 28, "title": "HTTP_TYPE:200 NUMBER:1<br>cv", "color": null}, {"id": 1709, "label": "?ical=1", "group": "200", "size": 28, "title": "HTTP_TYPE:200 NUMBER:1<br>?ical=1", "color": null}, {"id": 1663, "label": "index_1vlZS5SG3tDd6fB1.html?brick_id=1vlZS5SG3tDd6fB1", "group": "200", "size": 28, "title": "HTTP_TYPE:200 NUMBER:1<br>index_1vlZS5SG3tDd6fB1.html?brick_id=1vlZS5SG3tDd6fB1", "color": null}, {"id": 1769, "label": "04", "group": "200", "size": 34, "title": "HTTP_TYPE:200 NUMBER:3<br>04", "color": null}, {"id": 1603, "label": "team", "group": "200", "size": 28, "title": "HTTP_TYPE:200 NUMBER:1<br>team", "color": null}, {"id": 1765, "label": "01", "group": "200", "size": 55, "title": "HTTP_TYPE:200 NUMBER:10<br>01", "color": null}, {"id": 1605, "label": "dienste", "group": "200", "size": 28, "title": "HTTP_TYPE:200 NUMBER:1<br>dienste", "color": null}, {"id": 1719, "label": "easy-bootstrap-shortcodes", "group": "URL", "size": 25, "title": "easy-bootstrap-shortcodes", "color": null}, {"id": 1609, "label": "infos", "group": "200", "size": 28, "title": "HTTP_TYPE:200 NUMBER:1<br>infos", "color": null}, {"id": 1573, "label": "psychologie-studieren", "group": "200", "size": 28, "title": "HTTP_TYPE:200 NUMBER:1<br>psychologie-studieren", "color": null}, {"id": 1610, "label": "xmlrpc.php?rsd", "group": "200", "size": 28, "title": "HTTP_TYPE:200 NUMBER:1<br>xmlrpc.php?rsd", "color": null}, {"id": 1590, "label": "wie-sieht-ihre-zukunft-aus", "group": "404", "size": 31, "title": "HTTP_TYPE:404 NUMBER:2<br>wie-sieht-ihre-zukunft-aus", "color": null}, {"id": 1599, "label": "deliberative-citizenship-a-critical-reappraisal", "group": "200", "size": 31, "title": "HTTP_TYPE:200 NUMBER:2<br>deliberative-citizenship-a-critical-reappraisal", "color": null}, {"id": 1600, "label": "aktuelle-entwicklungen-in-mali", "group": "200", "size": 31, "title": "HTTP_TYPE:200 NUMBER:2<br>aktuelle-entwicklungen-in-mali", "color": null}, {"id": 1635, "label": "index_TckwKE3mYtUy0ZvL.html", "group": "200", "size": 28, "title": "HTTP_TYPE:200 NUMBER:1<br>index_TckwKE3mYtUy0ZvL.html", "color": null}, {"id": 1628, "label": "index_bPdoF1k5y1RjeTU3.html?brick_id=bPdoF1k5y1RjeTU3", "group": "410", "size": 28, "title": "HTTP_TYPE:410 NUMBER:1<br>index_bPdoF1k5y1RjeTU3.html?brick_id=bPdoF1k5y1RjeTU3", "color": null}, {"id": 1565, "label": "be", "group": "URL", "size": 25, "title": "be", "color": null}, {"id": 1619, "label": "index_j8jnQpJM1opsV45s.html?brick_id=j8jnQpJM1opsV45s", "group": "410", "size": 28, "title": "HTTP_TYPE:410 NUMBER:1<br>index_j8jnQpJM1opsV45s.html?brick_id=j8jnQpJM1opsV45s", "color": null}, {"id": 1664, "label": "index_1Mo2tX5A36XRG64R.html?brick_id=1Mo2tX5A36XRG64R", "group": "200", "size": 28, "title": "HTTP_TYPE:200 NUMBER:1<br>index_1Mo2tX5A36XRG64R.html?brick_id=1Mo2tX5A36XRG64R", "color": null}, {"id": 1731, "label": "more-democracy-through-democratic-innovations-the-change-of-political-equality-through-new-forms-of-participation", "group": "200", "size": 28, "title": "HTTP_TYPE:200 NUMBER:1<br>more-democracy-through-democratic-innovations-the-change-of-political-equality-through-new-forms-of-participation", "color": null}, {"id": 1650, "label": "index_pbsJxeGKrbksEGYM.html?brick_id=pbsJxeGKrbksEGYM", "group": "500", "size": 28, "title": "HTTP_TYPE:500 NUMBER:1<br>index_pbsJxeGKrbksEGYM.html?brick_id=pbsJxeGKrbksEGYM", "color": null}, {"id": 1741, "label": "755", "group": "URL", "size": 25, "title": "755", "color": null}, {"id": 1626, "label": "index_cRrb12H33hwGAMq2.html?brick_id=cRrb12H33hwGAMq2", "group": "410", "size": 28, "title": "HTTP_TYPE:410 NUMBER:1<br>index_cRrb12H33hwGAMq2.html?brick_id=cRrb12H33hwGAMq2", "color": null}, {"id": 1744, "label": "665", "group": "URL", "size": 25, "title": "665", "color": null}, {"id": 1689, "label": "index_FUPxQwgBM9qPlH7Q.html?brick_id=FUPxQwgBM9qPlH7Q", "group": "200", "size": 28, "title": "HTTP_TYPE:200 NUMBER:1<br>index_FUPxQwgBM9qPlH7Q.html?brick_id=FUPxQwgBM9qPlH7Q", "color": null}, {"id": 1637, "label": "index_kthTFsqmgnl9pz0F.html?brick_id=kthTFsqmgnl9pz0F", "group": "410", "size": 28, "title": "HTTP_TYPE:410 NUMBER:1<br>index_kthTFsqmgnl9pz0F.html?brick_id=kthTFsqmgnl9pz0F", "color": null}, {"id": 1707, "label": "forschung", "group": "200", "size": 28, "title": "HTTP_TYPE:200 NUMBER:1<br>forschung", "color": null}, {"id": 1560, "label": "ztb", "group": "URL", "size": 25, "title": "ztb", "color": null}, {"id": 1622, "label": "index_fN5OtLcLXddh2Kft.html?brick_id=fN5OtLcLXddh2Kft", "group": "404", "size": 28, "title": "HTTP_TYPE:404 NUMBER:1<br>index_fN5OtLcLXddh2Kft.html?brick_id=fN5OtLcLXddh2Kft", "color": null}, {"id": 1627, "label": "index_c9J0Kqr0Na87r81A.html?brick_id=c9J0Kqr0Na87r81A", "group": "404", "size": 28, "title": "HTTP_TYPE:404 NUMBER:1<br>index_c9J0Kqr0Na87r81A.html?brick_id=c9J0Kqr0Na87r81A", "color": null}, {"id": 1768, "label": "12", "group": "200", "size": 34, "title": "HTTP_TYPE:200 NUMBER:3<br>12", "color": null}, {"id": 1557, "label": "verglreg", "group": "URL", "size": 25, "title": "verglreg", "color": null}, {"id": 1773, "label": "06", "group": "200", "size": 31, "title": "HTTP_TYPE:200 NUMBER:2<br>06", "color": null}, {"id": 1700, "label": "feed", "group": "200", "size": 28, "title": "HTTP_TYPE:200 NUMBER:1<br>feed", "color": null}, {"id": 1665, "label": "index.php?brick_id=xlWx0Q94yXDYHT77&action=setlanguage&language=de", "group": "200", "size": 28, "title": "HTTP_TYPE:200 NUMBER:1<br>index.php?brick_id=xlWx0Q94yXDYHT77&action=setlanguage&language=de", "color": null}, {"id": 1771, "label": "03", "group": "404", "size": 34, "title": "HTTP_TYPE:404 NUMBER:3<br>03", "color": null}, {"id": 1775, "label": "07", "group": "404", "size": 31, "title": "HTTP_TYPE:404 NUMBER:2<br>07", "color": null}, {"id": 1553, "label": "auslandsstud", "group": "URL", "size": 25, "title": "auslandsstud", "color": null}, {"id": 1566, "label": "kuw", "group": "URL", "size": 25, "title": "kuw", "color": null}, {"id": 1772, "label": "05", "group": "200", "size": 34, "title": "HTTP_TYPE:200 NUMBER:3<br>05", "color": null}, {"id": 1652, "label": "index_o3gDOq6iMVYcIdxQ.html?brick_id=o3gDOq6iMVYcIdxQ", "group": "404", "size": 28, "title": "HTTP_TYPE:404 NUMBER:1<br>index_o3gDOq6iMVYcIdxQ.html?brick_id=o3gDOq6iMVYcIdxQ", "color": null}, {"id": 1676, "label": "index_J8ncRceVmekW5Mgh.html?brick_id=J8ncRceVmekW5Mgh", "group": "200", "size": 28, "title": "HTTP_TYPE:200 NUMBER:1<br>index_J8ncRceVmekW5Mgh.html?brick_id=J8ncRceVmekW5Mgh", "color": null}, {"id": 1766, "label": "08", "group": "200", "size": 40, "title": "HTTP_TYPE:200 NUMBER:5<br>08", "color": null}, {"id": 1659, "label": "index.php?brick_id=oNpWdgVyyXJDB5fZ&action=showitem&item=eb7ee3dcd490598587f56ae87cedf7d0", "group": "200", "size": 28, "title": "HTTP_TYPE:200 NUMBER:1<br>index.php?brick_id=oNpWdgVyyXJDB5fZ&action=showitem&item=eb7ee3dcd490598587f56ae87cedf7d0", "color": null}, {"id": 1621, "label": "index_hk08VOpQjm6pSDg4.html?brick_id=hk08VOpQjm6pSDg4", "group": "404", "size": 28, "title": "HTTP_TYPE:404 NUMBER:1<br>index_hk08VOpQjm6pSDg4.html?brick_id=hk08VOpQjm6pSDg4", "color": null}, {"id": 1748, "label": "675", "group": "URL", "size": 25, "title": "675", "color": null}, {"id": 1685, "label": "index_9X3Oy4lSuPrfdMOg.html?brick_id=9X3Oy4lSuPrfdMOg", "group": "200", "size": 28, "title": "HTTP_TYPE:200 NUMBER:1<br>index_9X3Oy4lSuPrfdMOg.html?brick_id=9X3Oy4lSuPrfdMOg", "color": null}, {"id": 1634, "label": "index_Tfc4YTmPOFQeFV6O.html?brick_id=Tfc4YTmPOFQeFV6O", "group": "200", "size": 28, "title": "HTTP_TYPE:200 NUMBER:1<br>index_Tfc4YTmPOFQeFV6O.html?brick_id=Tfc4YTmPOFQeFV6O", "color": null}, {"id": 1589, "label": "beruf-moskauer-foschen-und-leben-in-russland", "group": "200", "size": 31, "title": "HTTP_TYPE:200 NUMBER:2<br>beruf-moskauer-foschen-und-leben-in-russland", "color": null}, {"id": 1642, "label": "index_wnXreJHdCG1EkaPg.html?brick_id=wnXreJHdCG1EkaPg", "group": "404", "size": 28, "title": "HTTP_TYPE:404 NUMBER:1<br>index_wnXreJHdCG1EkaPg.html?brick_id=wnXreJHdCG1EkaPg", "color": null}, {"id": 1558, "label": "wb", "group": "URL", "size": 25, "title": "wb", "color": null}, {"id": 1638, "label": "index_l0CSoMVp3q9wmXXS.html?brick_id=l0CSoMVp3q9wmXXS", "group": "410", "size": 28, "title": "HTTP_TYPE:410 NUMBER:1<br>index_l0CSoMVp3q9wmXXS.html?brick_id=l0CSoMVp3q9wmXXS", "color": null}, {"id": 1727, "label": "dr-alexander-stulpe", "group": "200", "size": 28, "title": "HTTP_TYPE:200 NUMBER:1<br>dr-alexander-stulpe", "color": null}, {"id": 1749, "label": "570", "group": "URL", "size": 25, "title": "570", "color": null}, {"id": 1655, "label": "index_mGZh0zknh86Nhns8.html?brick_id=mGZh0zknh86Nhns8", "group": "410", "size": 28, "title": "HTTP_TYPE:410 NUMBER:1<br>index_mGZh0zknh86Nhns8.html?brick_id=mGZh0zknh86Nhns8", "color": null}, {"id": 1563, "label": "ees", "group": "URL", "size": 25, "title": "ees", "color": null}, {"id": 1606, "label": "index_deCb5n7DzNZK5JWd.html?brick_id=deCb5n7DzNZK5JWd", "group": "200", "size": 28, "title": "HTTP_TYPE:200 NUMBER:1<br>index_deCb5n7DzNZK5JWd.html?brick_id=deCb5n7DzNZK5JWd", "color": null}, {"id": 1582, "label": "robots.txt", "group": "200", "size": 28, "title": "HTTP_TYPE:200 NUMBER:1<br>robots.txt", "color": null}, {"id": 1602, "label": "feed", "group": "200", "size": 28, "title": "HTTP_TYPE:200 NUMBER:1<br>feed", "color": null}, {"id": 1715, "label": "severin-pleyer-2", "group": "200", "size": 28, "title": "HTTP_TYPE:200 NUMBER:1<br>severin-pleyer-2", "color": null}, {"id": 1586, "label": "projektauftakt-forschungsverbund-zur-energiesystemanalyse", "group": "URL", "size": 25, "title": "projektauftakt-forschungsverbund-zur-energiesystemanalyse", "color": null}, {"id": 1555, "label": "karriere", "group": "URL", "size": 25, "title": "karriere", "color": null}, {"id": 1728, "label": "dannica-fleuss", "group": "200", "size": 28, "title": "HTTP_TYPE:200 NUMBER:1<br>dannica-fleuss", "color": null}, {"id": 1743, "label": "647", "group": "URL", "size": 25, "title": "647", "color": null}, {"id": 1682, "label": "index_Km9AyRjbVpvLEub6.html?brick_id=Km9AyRjbVpvLEub6", "group": "200", "size": 28, "title": "HTTP_TYPE:200 NUMBER:1<br>index_Km9AyRjbVpvLEub6.html?brick_id=Km9AyRjbVpvLEub6", "color": null}, {"id": 1620, "label": "index_iXaasSc1iIVMS4iX.html?brick_id=iXaasSc1iIVMS4iX", "group": "410", "size": 28, "title": "HTTP_TYPE:410 NUMBER:1<br>index_iXaasSc1iIVMS4iX.html?brick_id=iXaasSc1iIVMS4iX", "color": null}, {"id": 1733, "label": "research-interests", "group": "200", "size": 28, "title": "HTTP_TYPE:200 NUMBER:1<br>research-interests", "color": null}, {"id": 1690, "label": "index_EfdPXpJN5BoVXOGF.html?brick_id=EfdPXpJN5BoVXOGF", "group": "200", "size": 28, "title": "HTTP_TYPE:200 NUMBER:1<br>index_EfdPXpJN5BoVXOGF.html?brick_id=EfdPXpJN5BoVXOGF", "color": null}, {"id": 1764, "label": "glyphicons-halflings-regular.eot", "group": "200", "size": 28, "title": "HTTP_TYPE:200 NUMBER:1<br>glyphicons-halflings-regular.eot", "color": null}, {"id": 1658, "label": "index_PYrYikSBLbaH7Vt4.html?brick_id=PYrYikSBLbaH7Vt4", "group": "200", "size": 28, "title": "HTTP_TYPE:200 NUMBER:1<br>index_PYrYikSBLbaH7Vt4.html?brick_id=PYrYikSBLbaH7Vt4", "color": null}, {"id": 1680, "label": "index_M6MhTPFp9CEdHiEZ.html", "group": "200", "size": 28, "title": "HTTP_TYPE:200 NUMBER:1<br>index_M6MhTPFp9CEdHiEZ.html", "color": null}, {"id": 1613, "label": "impressum", "group": "200", "size": 28, "title": "HTTP_TYPE:200 NUMBER:1<br>impressum", "color": null}, {"id": 1643, "label": "index_wFqqprLUe9qFCnN6.html?brick_id=wFqqprLUe9qFCnN6", "group": "200", "size": 28, "title": "HTTP_TYPE:200 NUMBER:1<br>index_wFqqprLUe9qFCnN6.html?brick_id=wFqqprLUe9qFCnN6", "color": null}, {"id": 1770, "label": "02", "group": "404", "size": 34, "title": "HTTP_TYPE:404 NUMBER:3<br>02", "color": null}, {"id": 1763, "label": "fontawesome-webfont.ttf?v=4.2.0", "group": "200", "size": 28, "title": "HTTP_TYPE:200 NUMBER:1<br>fontawesome-webfont.ttf?v=4.2.0", "color": null}, {"id": 1752, "label": "685", "group": "URL", "size": 25, "title": "685", "color": null}, {"id": 1729, "label": "christoph-deppe-m-a", "group": "200", "size": 28, "title": "HTTP_TYPE:200 NUMBER:1<br>christoph-deppe-m-a", "color": null}, {"id": 1646, "label": "index_tTPsGrLrQm20vhuM.html?brick_id=tTPsGrLrQm20vhuM", "group": "200", "size": 28, "title": "HTTP_TYPE:200 NUMBER:1<br>index_tTPsGrLrQm20vhuM.html?brick_id=tTPsGrLrQm20vhuM", "color": null}, {"id": 1666, "label": "index.php?brick_id=xLOhBtUWUdGbguDT&action=setlanguage&language=en", "group": "200", "size": 28, "title": "HTTP_TYPE:200 NUMBER:1<br>index.php?brick_id=xLOhBtUWUdGbguDT&action=setlanguage&language=en", "color": null}]);
+      var edges = [{"from": 1712, "to": 1604, "color": "", "label": "belongs_to"}, {"from": 1671, "to": 1571, "color": "", "label": "belongs_to"}, {"from": 1654, "to": 1571, "color": "", "label": "belongs_to"}, {"from": 1711, "to": 1604, "color": "", "label": "belongs_to"}, {"from": 1747, "to": 1718, "color": "", "label": "belongs_to"}, {"from": 1579, "to": 1550, "color": "", "label": "belongs_to"}, {"from": 1577, "to": 1550, "color": "", "label": "belongs_to"}, {"from": 1692, "to": 1571, "color": "", "label": "belongs_to"}, {"from": 1618, "to": 1569, "color": "", "label": "belongs_to"}, {"from": 1754, "to": 1718, "color": "", "label": "belongs_to"}, {"from": 1647, "to": 1571, "color": "", "label": "belongs_to"}, {"from": 1738, "to": 1718, "color": "", "label": "belongs_to"}, {"from": 1725, "to": 1703, "color": "", "label": "belongs_to"}, {"from": 1740, "to": 1718, "color": "", "label": "belongs_to"}, {"from": 1697, "to": 1601, "color": "", "label": "belongs_to"}, {"from": 1686, "to": 1571, "color": "", "label": "belongs_to"}, {"from": 1601, "to": 1569, "color": "", "label": "belongs_to"}, {"from": 1567, "to": 1550, "color": "", "label": "belongs_to"}, {"from": 1554, "to": 1550, "color": "", "label": "belongs_to"}, {"from": 1649, "to": 1571, "color": "", "label": "belongs_to"}, {"from": 1569, "to": 1550, "color": "", "label": "belongs_to"}, {"from": 1730, "to": 1703, "color": "", "label": "belongs_to"}, {"from": 1701, "to": 1604, "color": "", "label": "belongs_to"}, {"from": 1570, "to": 1550, "color": "", "label": "belongs_to"}, {"from": 1630, "to": 1571, "color": "", "label": "belongs_to"}, {"from": 1758, "to": 1740, "color": "", "label": "belongs_to"}, {"from": 1718, "to": 1695, "color": "", "label": "belongs_to"}, {"from": 1720, "to": 1698, "color": "", "label": "belongs_to"}, {"from": 1564, "to": 1550, "color": "", "label": "belongs_to"}, {"from": 1693, "to": 1571, "color": "", "label": "belongs_to"}, {"from": 1732, "to": 1717, "color": "", "label": "belongs_to"}, {"from": 1648, "to": 1571, "color": "", "label": "belongs_to"}, {"from": 1576, "to": 1550, "color": "", "label": "belongs_to"}, {"from": 1737, "to": 1718, "color": "", "label": "belongs_to"}, {"from": 1578, "to": 1550, "color": "", "label": "belongs_to"}, {"from": 1679, "to": 1571, "color": "", "label": "belongs_to"}, {"from": 1597, "to": 1559, "color": "", "label": "belongs_to"}, {"from": 1561, "to": 1550, "color": "", "label": "belongs_to"}, {"from": 1571, "to": 1550, "color": "", "label": "belongs_to"}, {"from": 1584, "to": 1550, "color": "", "label": "belongs_to"}, {"from": 1581, "to": 1550, "color": "", "label": "belongs_to"}, {"from": 1594, "to": 1559, "color": "", "label": "belongs_to"}, {"from": 1651, "to": 1571, "color": "", "label": "belongs_to"}, {"from": 1724, "to": 1703, "color": "", "label": "belongs_to"}, {"from": 1746, "to": 1718, "color": "", "label": "belongs_to"}, {"from": 1703, "to": 1604, "color": "", "label": "belongs_to"}, {"from": 1759, "to": 1737, "color": "", "label": "belongs_to"}, {"from": 1668, "to": 1571, "color": "", "label": "belongs_to"}, {"from": 1696, "to": 1588, "color": "", "label": "belongs_to"}, {"from": 1677, "to": 1571, "color": "", "label": "belongs_to"}, {"from": 1588, "to": 1552, "color": "", "label": "belongs_to"}, {"from": 1726, "to": 1703, "color": "", "label": "belongs_to"}, {"from": 1706, "to": 1614, "color": "", "label": "belongs_to"}, {"from": 1681, "to": 1571, "color": "", "label": "belongs_to"}, {"from": 1688, "to": 1571, "color": "", "label": "belongs_to"}, {"from": 1587, "to": 1550, "color": "", "label": "belongs_to"}, {"from": 1568, "to": 1550, "color": "", "label": "belongs_to"}, {"from": 1702, "to": 1604, "color": "", "label": "belongs_to"}, {"from": 1699, "to": 1608, "color": "", "label": "belongs_to"}, {"from": 1774, "to": 1759, "color": "", "label": "belongs_to"}, {"from": 1596, "to": 1559, "color": "", "label": "belongs_to"}, {"from": 1562, "to": 1550, "color": "", "label": "belongs_to"}, {"from": 1644, "to": 1571, "color": "", "label": "belongs_to"}, {"from": 1645, "to": 1571, "color": "", "label": "belongs_to"}, {"from": 1598, "to": 1559, "color": "", "label": "belongs_to"}, {"from": 1710, "to": 1615, "color": "", "label": "belongs_to"}, {"from": 1734, "to": 1717, "color": "", "label": "belongs_to"}, {"from": 1761, "to": 1753, "color": "", "label": "belongs_to"}, {"from": 1591, "to": 1559, "color": "", "label": "belongs_to"}, {"from": 1742, "to": 1718, "color": "", "label": "belongs_to"}, {"from": 1667, "to": 1571, "color": "", "label": "belongs_to"}, {"from": 1614, "to": 1575, "color": "", "label": "belongs_to"}, {"from": 1636, "to": 1571, "color": "", "label": "belongs_to"}, {"from": 1559, "to": 1550, "color": "", "label": "belongs_to"}, {"from": 1583, "to": 1550, "color": "", "label": "belongs_to"}, {"from": 1708, "to": 1615, "color": "", "label": "belongs_to"}, {"from": 1670, "to": 1571, "color": "", "label": "belongs_to"}, {"from": 1572, "to": 1550, "color": "", "label": "belongs_to"}, {"from": 1713, "to": 1683, "color": "", "label": "belongs_to"}, {"from": 1661, "to": 1571, "color": "", "label": "belongs_to"}, {"from": 1760, "to": 1753, "color": "", "label": "belongs_to"}, {"from": 1574, "to": 1550, "color": "", "label": "belongs_to"}, {"from": 1592, "to": 1559, "color": "", "label": "belongs_to"}, {"from": 1639, "to": 1571, "color": "", "label": "belongs_to"}, {"from": 1675, "to": 1571, "color": "", "label": "belongs_to"}, {"from": 1595, "to": 1559, "color": "", "label": "belongs_to"}, {"from": 1745, "to": 1718, "color": "", "label": "belongs_to"}, {"from": 1687, "to": 1571, "color": "", "label": "belongs_to"}, {"from": 1669, "to": 1571, "color": "", "label": "belongs_to"}, {"from": 1556, "to": 1550, "color": "", "label": "belongs_to"}, {"from": 1631, "to": 1571, "color": "", "label": "belongs_to"}, {"from": 1756, "to": 1737, "color": "", "label": "belongs_to"}, {"from": 1722, "to": 1704, "color": "", "label": "belongs_to"}, {"from": 1580, "to": 1550, "color": "", "label": "belongs_to"}, {"from": 1673, "to": 1571, "color": "", "label": "belongs_to"}, {"from": 1721, "to": 1704, "color": "", "label": "belongs_to"}, {"from": 1624, "to": 1571, "color": "", "label": "belongs_to"}, {"from": 1625, "to": 1571, "color": "", "label": "belongs_to"}, {"from": 1641, "to": 1571, "color": "", "label": "belongs_to"}, {"from": 1629, "to": 1571, "color": "", "label": "belongs_to"}, {"from": 1695, "to": 1588, "color": "", "label": "belongs_to"}, {"from": 1767, "to": 1757, "color": "", "label": "belongs_to"}, {"from": 1684, "to": 1571, "color": "", "label": "belongs_to"}, {"from": 1672, "to": 1571, "color": "", "label": "belongs_to"}, {"from": 1585, "to": 1551, "color": "", "label": "belongs_to"}, {"from": 1723, "to": 1705, "color": "", "label": "belongs_to"}, {"from": 1739, "to": 1718, "color": "", "label": "belongs_to"}, {"from": 1694, "to": 1572, "color": "", "label": "belongs_to"}, {"from": 1657, "to": 1571, "color": "", "label": "belongs_to"}, {"from": 1593, "to": 1559, "color": "", "label": "belongs_to"}, {"from": 1616, "to": 1575, "color": "", "label": "belongs_to"}, {"from": 1611, "to": 1571, "color": "", "label": "belongs_to"}, {"from": 1615, "to": 1569, "color": "", "label": "belongs_to"}, {"from": 1698, "to": 1588, "color": "", "label": "belongs_to"}, {"from": 1660, "to": 1571, "color": "", "label": "belongs_to"}, {"from": 1640, "to": 1571, "color": "", "label": "belongs_to"}, {"from": 1632, "to": 1571, "color": "", "label": "belongs_to"}, {"from": 1662, "to": 1571, "color": "", "label": "belongs_to"}, {"from": 1633, "to": 1571, "color": "", "label": "belongs_to"}, {"from": 1678, "to": 1571, "color": "", "label": "belongs_to"}, {"from": 1612, "to": 1575, "color": "", "label": "belongs_to"}, {"from": 1755, "to": 1737, "color": "", "label": "belongs_to"}, {"from": 1617, "to": 1569, "color": "", "label": "belongs_to"}, {"from": 1714, "to": 1604, "color": "", "label": "belongs_to"}, {"from": 1552, "to": 1550, "color": "", "label": "belongs_to"}, {"from": 1691, "to": 1571, "color": "", "label": "belongs_to"}, {"from": 1683, "to": 1571, "color": "", "label": "belongs_to"}, {"from": 1607, "to": 1569, "color": "", "label": "belongs_to"}, {"from": 1750, "to": 1718, "color": "", "label": "belongs_to"}, {"from": 1656, "to": 1571, "color": "", "label": "belongs_to"}, {"from": 1757, "to": 1737, "color": "", "label": "belongs_to"}, {"from": 1751, "to": 1718, "color": "", "label": "belongs_to"}, {"from": 1623, "to": 1571, "color": "", "label": "belongs_to"}, {"from": 1735, "to": 1717, "color": "", "label": "belongs_to"}, {"from": 1716, "to": 1604, "color": "", "label": "belongs_to"}, {"from": 1653, "to": 1571, "color": "", "label": "belongs_to"}, {"from": 1762, "to": 1753, "color": "", "label": "belongs_to"}, {"from": 1674, "to": 1571, "color": "", "label": "belongs_to"}, {"from": 1736, "to": 1717, "color": "", "label": "belongs_to"}, {"from": 1709, "to": 1618, "color": "", "label": "belongs_to"}, {"from": 1663, "to": 1571, "color": "", "label": "belongs_to"}, {"from": 1769, "to": 1759, "color": "", "label": "belongs_to"}, {"from": 1603, "to": 1569, "color": "", "label": "belongs_to"}, {"from": 1765, "to": 1755, "color": "", "label": "belongs_to"}, {"from": 1704, "to": 1604, "color": "", "label": "belongs_to"}, {"from": 1605, "to": 1571, "color": "", "label": "belongs_to"}, {"from": 1753, "to": 1719, "color": "", "label": "belongs_to"}, {"from": 1609, "to": 1572, "color": "", "label": "belongs_to"}, {"from": 1573, "to": 1550, "color": "", "label": "belongs_to"}, {"from": 1610, "to": 1569, "color": "", "label": "belongs_to"}, {"from": 1590, "to": 1559, "color": "", "label": "belongs_to"}, {"from": 1599, "to": 1559, "color": "", "label": "belongs_to"}, {"from": 1600, "to": 1559, "color": "", "label": "belongs_to"}, {"from": 1635, "to": 1571, "color": "", "label": "belongs_to"}, {"from": 1628, "to": 1571, "color": "", "label": "belongs_to"}, {"from": 1565, "to": 1550, "color": "", "label": "belongs_to"}, {"from": 1619, "to": 1571, "color": "", "label": "belongs_to"}, {"from": 1664, "to": 1571, "color": "", "label": "belongs_to"}, {"from": 1731, "to": 1716, "color": "", "label": "belongs_to"}, {"from": 1650, "to": 1571, "color": "", "label": "belongs_to"}, {"from": 1741, "to": 1718, "color": "", "label": "belongs_to"}, {"from": 1626, "to": 1571, "color": "", "label": "belongs_to"}, {"from": 1604, "to": 1571, "color": "", "label": "belongs_to"}, {"from": 1744, "to": 1718, "color": "", "label": "belongs_to"}, {"from": 1689, "to": 1571, "color": "", "label": "belongs_to"}, {"from": 1637, "to": 1571, "color": "", "label": "belongs_to"}, {"from": 1575, "to": 1550, "color": "", "label": "belongs_to"}, {"from": 1707, "to": 1614, "color": "", "label": "belongs_to"}, {"from": 1560, "to": 1550, "color": "", "label": "belongs_to"}, {"from": 1622, "to": 1571, "color": "", "label": "belongs_to"}, {"from": 1627, "to": 1571, "color": "", "label": "belongs_to"}, {"from": 1768, "to": 1757, "color": "", "label": "belongs_to"}, {"from": 1557, "to": 1550, "color": "", "label": "belongs_to"}, {"from": 1773, "to": 1759, "color": "", "label": "belongs_to"}, {"from": 1700, "to": 1611, "color": "", "label": "belongs_to"}, {"from": 1665, "to": 1571, "color": "", "label": "belongs_to"}, {"from": 1771, "to": 1756, "color": "", "label": "belongs_to"}, {"from": 1775, "to": 1756, "color": "", "label": "belongs_to"}, {"from": 1553, "to": 1550, "color": "", "label": "belongs_to"}, {"from": 1566, "to": 1550, "color": "", "label": "belongs_to"}, {"from": 1772, "to": 1755, "color": "", "label": "belongs_to"}, {"from": 1652, "to": 1571, "color": "", "label": "belongs_to"}, {"from": 1676, "to": 1571, "color": "", "label": "belongs_to"}, {"from": 1766, "to": 1756, "color": "", "label": "belongs_to"}, {"from": 1659, "to": 1571, "color": "", "label": "belongs_to"}, {"from": 1621, "to": 1571, "color": "", "label": "belongs_to"}, {"from": 1748, "to": 1718, "color": "", "label": "belongs_to"}, {"from": 1685, "to": 1571, "color": "", "label": "belongs_to"}, {"from": 1634, "to": 1571, "color": "", "label": "belongs_to"}, {"from": 1589, "to": 1559, "color": "", "label": "belongs_to"}, {"from": 1642, "to": 1571, "color": "", "label": "belongs_to"}, {"from": 1558, "to": 1550, "color": "", "label": "belongs_to"}, {"from": 1638, "to": 1571, "color": "", "label": "belongs_to"}, {"from": 1727, "to": 1703, "color": "", "label": "belongs_to"}, {"from": 1719, "to": 1696, "color": "", "label": "belongs_to"}, {"from": 1749, "to": 1718, "color": "", "label": "belongs_to"}, {"from": 1655, "to": 1571, "color": "", "label": "belongs_to"}, {"from": 1563, "to": 1550, "color": "", "label": "belongs_to"}, {"from": 1606, "to": 1572, "color": "", "label": "belongs_to"}, {"from": 1582, "to": 1550, "color": "", "label": "belongs_to"}, {"from": 1602, "to": 1570, "color": "", "label": "belongs_to"}, {"from": 1715, "to": 1604, "color": "", "label": "belongs_to"}, {"from": 1586, "to": 1550, "color": "", "label": "belongs_to"}, {"from": 1608, "to": 1569, "color": "", "label": "belongs_to"}, {"from": 1555, "to": 1550, "color": "", "label": "belongs_to"}, {"from": 1728, "to": 1703, "color": "", "label": "belongs_to"}, {"from": 1743, "to": 1718, "color": "", "label": "belongs_to"}, {"from": 1682, "to": 1571, "color": "", "label": "belongs_to"}, {"from": 1620, "to": 1571, "color": "", "label": "belongs_to"}, {"from": 1733, "to": 1717, "color": "", "label": "belongs_to"}, {"from": 1690, "to": 1571, "color": "", "label": "belongs_to"}, {"from": 1717, "to": 1604, "color": "", "label": "belongs_to"}, {"from": 1764, "to": 1753, "color": "", "label": "belongs_to"}, {"from": 1658, "to": 1571, "color": "", "label": "belongs_to"}, {"from": 1705, "to": 1604, "color": "", "label": "belongs_to"}, {"from": 1680, "to": 1571, "color": "", "label": "belongs_to"}, {"from": 1613, "to": 1575, "color": "", "label": "belongs_to"}, {"from": 1643, "to": 1571, "color": "", "label": "belongs_to"}, {"from": 1770, "to": 1758, "color": "", "label": "belongs_to"}, {"from": 1763, "to": 1753, "color": "", "label": "belongs_to"}, {"from": 1752, "to": 1718, "color": "", "label": "belongs_to"}, {"from": 1729, "to": 1703, "color": "", "label": "belongs_to"}, {"from": 1646, "to": 1571, "color": "", "label": "belongs_to"}, {"from": 1666, "to": 1571, "color": "", "label": "belongs_to"}];
+      var container = document.getElementById("d49c98e7-2944-40a5-907d-ae42ab65a6e3");
+      var data = {
+        nodes: nodes,
+        edges: edges
+      };
+      var options = {
       
-
-    </div>
+        layout: {
+          hierarchical: {
+            direction: "LR",
+            levelSeperation: 20000,
+          },
+        },
+        
+          nodes: {
+              shape: 'dot',
+              size: 25,
+              font: {
+                  size: 14
+              }
+          },
+              
+          edges: {
+              font: {
+                  size: 14,
+                  align: 'middle'
+              },
+              color: {
+                  inherit: false
+              },
+              arrows: {
+                  to: {enabled: true, scaleFactor: 0.5}
+              },
+              smooth: {type: "horizontal"}
+          },
+          
+              physics: {
+              enabled: false,
+              hierarchicalRepulsion: {
+                  centralGravity: 0,
+                  nodeDistance: 390,
+                  springLength: 900,
+                  springConstant: 0.96,
+                  damping: 0.8,
+               },
+              minVelocity: 0.01,
+              maxVelocity: 9,
+              solver: "hierarchicalRepulsion"
+          }
     
+      };
+      var network = new vis.Network(container, data, options);
+    </script>
+    </body>
+    </html>
     
-</div>
-
-
-</div>
-
-
-
-
-
-
-
-
-<script type="text/javascript">
-  require(["auth/js/main"], function (auth) {
-    auth.login_main();
-  });
-</script>
-
-
-
-<script type='text/javascript'>
-  function _remove_token_from_url() {
-    if (window.location.search.length <= 1) {
-      return;
-    }
-    var search_parameters = window.location.search.slice(1).split('&');
-    for (var i = 0; i < search_parameters.length; i++) {
-      if (search_parameters[i].split('=')[0] === 'token') {
-        // remote token from search parameters
-        search_parameters.splice(i, 1);
-        var new_search = '';
-        if (search_parameters.length) {
-          new_search = '?' + search_parameters.join('&');
-        }
-        var new_url = window.location.origin + 
-                      window.location.pathname + 
-                      new_search + 
-                      window.location.hash;
-        window.history.replaceState({}, "", new_url);
-        return;
-      }
-    }
-  }
-  _remove_token_from_url();
-</script>
-</body>
-
-</html>
