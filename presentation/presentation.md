@@ -48,12 +48,45 @@ header-packages:
   * Wie filtere ich diese Daten nach interessanten Informationen?
   * Wie visualiere ich diese Daten für zusätzliche/grundlegende Erkenntnisse?
 
+  * genutzt und benötigt von
+    * Pentester/RedTeamer
+    * BugBounty-Hunter
 
 ## Ablauf
 
 ![](images/ablauf.png){#id .class height=70%}
 
-# Subdomains
+  * Wildcard Scope subdomain.hsu-hh.de gemäß VDPBw
+
+## VDPBw
+
+\begin{center}
+    \includegraphics[width=0.8\columnwidth]{images/vdp.png}
+\end{center}
+
+  * "Vulnerability Disclosure Program" der Bundeswehr
+    * aus Internet erreichbare Infrastruktur unter Verantwortung der Bundeswehr darf auf Schwachstellen untersucht werden ohne Beeinträchtigung
+    * Meldung gefundener Schwachstellen
+    * als Belohnung Aufnahme in "Hall Of Fame"
+
+    * -> keine Hinweise oder Offenlegung von Schwachstellen im Vortrag
+
+
+\begin{center}
+    \includegraphics[width=0.8\columnwidth]{images/hof.png}
+\end{center}
+
+# Subdomain Enumeration
+## Subdomain Enumeration - Was ist das?
+
+\vspace{1cm}
+\begin{block}{Subdomain-Enumeration}
+  Einsammeln von möglichst vielen Subdomains, die auf Root-Zieldomain verweisen aus verschiedenen passiven und aktiven Quellen.
+Ziel ist es, möglichst viele erreichbare Ziele im Zielbereich zu finden.
+\end{block}
+
+
+
 
 ## Subdomain Methodologie - Passiv
   
@@ -67,6 +100,7 @@ header-packages:
 
 
 ~~~{.bash}
+# passive Enumeration von Subdomains für gegebene Domain example.com
 amass enum -passive -d example.com -config path/amass_config.ini
 ~~~
 
@@ -80,6 +114,7 @@ amass enum -passive -d example.com -config path/amass_config.ini
     * --> [https://github.com/OWASP/Amass](https://github.com/OWASP/Amass)
 
 ~~~{.bash}
+# aktive Enumeration von Subdomains für gegebene Domain example.com
 amass enum -active -d example.com -asn 1234 -cidr 10.0.0.0/20 -config path/amass_config.ini
 ~~~
 
@@ -105,7 +140,17 @@ for domain in $sd_source; do
 \end{block}
 
 
-# Portscans
+# Portscanning
+
+## Portscanning - Was ist das?
+
+
+\vspace{1cm}
+\begin{block}{Portscanning}
+  Detektion und Enumeration von möglichst vielen Services die im Bereich des Zielnetzwerks laufen.
+Ziel ist es, ein umfassendes Bild über die genutzten Services, die beteiligten Technologien und ggf. bereits verwundbare Software-Produkte zu finden.
+\end{block}
+
 
 ## Alte und neue Wege
 
@@ -160,7 +205,16 @@ echo "$domain" | nuclei -rl 20 -c 3 -silent \
 \end{block}
 
 
-# URLs
+# URL-Crawling/-Spidering
+
+## URL-Crawling/-Spidering - Was ist das?
+
+\vspace{1cm}
+\begin{block}{URL-Crawling/-Spidering}
+Aufrufen und Einsammeln aller möglichen URL-Pfade/-Endpunkte.
+Ziel ist es, die HTML- und JS-Sourcecodes aller Seiten einzusammeln (weitere Analyse) und möglichst auffällige HTTP-Responses, bzw. HTTP-Header zu finden.
+\end{block}
+
 
 ## Quellen und Tools
 

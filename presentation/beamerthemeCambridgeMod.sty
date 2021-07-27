@@ -44,6 +44,7 @@
  \setbeamercolor*{palette secondary}{bg=lightgrey}
  \setbeamercolor*{palette tertiary}{bg=middlegrey}
 \setbeamercolor{section number projected}{bg=black}
+\setbeamercolor{subsection in head/foot}{fg=black, bg=lightgrey}
 %Variante 2: Schwarz und rot
 %\setbeamercolor*{block title}{fg=white,bg=black}
 %\setbeamercolor*{block body}{fg=black,bg=lightgrey}
@@ -114,6 +115,23 @@
   \begin{beamercolorbox}[wd=.5\paperwidth,ht=2.65ex,dp=1.5ex,center]{subsection in head/foot}%
     \usebeamerfont{subsection in head/foot}\hspace*{2ex}\insertsubsectionhead
   \end{beamercolorbox}}%
+  \vskip0pt%
+}
+
+\setbeamertemplate{footline}
+{
+  \leavevmode%
+  \hbox{%
+  \begin{beamercolorbox}[wd=.33\paperwidth,ht=2.65ex,dp=1.5ex,center]{section in head/foot}%
+    \usebeamerfont{section in head/foot}\insertshortauthor\hspace*{2ex}
+  \end{beamercolorbox}%
+  \begin{beamercolorbox}[wd=.33\paperwidth,ht=2.65ex,dp=1.5ex,center]{title in head/foot}%
+	  \usebeamerfont{title in head/foot}\hspace*{2ex}\insertshorttitle
+  \end{beamercolorbox}
+  \begin{beamercolorbox}[wd=.33\paperwidth,ht=2.65ex,dp=1.5ex,center]{date in head/foot}%
+	  \usebeamerfont{date in head/foot}\hspace*{2ex}\textcolor{black}{\insertframenumber/\inserttotalframenumber}
+  \end{beamercolorbox}}%
+
   \vskip0pt%
 }
 
