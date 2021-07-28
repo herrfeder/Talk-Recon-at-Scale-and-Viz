@@ -6,8 +6,6 @@ date: 28.Juli 2021
 subject: "Pentesting"
 fontsize: 10pt
 line-spacing: 2
-header-packages:
-- \usepackage{xcolor}
 ---
 
 # Wer bin ich?
@@ -27,20 +25,30 @@ header-packages:
 ## BugBounty und VDP
 
   * großes Wachstum an BugBounty und VDP-Programmen
-  * "Crowd-Sourced" Security Scanning kann durch kein Tool ersetzt werden
+  * __Crowd-Sourced__ Security Scanning kann durch kein Tool ersetzt werden
   * charakteristisch sind große Scopes mit vielen Zielen
 
-![](images/bugbountyprogrammes5.png){#id .class width=57% height=50%}
+
+\begin{center}
+    \includegraphics[width=0.5\columnwidth]{images/bugbountyplatforms.png}
+\end{center}
+
 
 ## Große Scopes und viele Daten
 
-![](images/bugbountyprogrammes.png)
+  * größten BugBounty/VDP-Programme haben über 2 Millionen Subdomains ([Chaos Database](https://chaos.projectdiscovery.io/#/)):
+
+\begin{center}
+    \includegraphics[width=\columnwidth]{images/bugbountyprogrammes.png}
+\end{center}
 
 ## Automatisierung und Datenpipelines
 
-![](images/automatisierung_datenpipelines.png)
+  * das führt zu Data-Driven-Ansatz zur Schwachstellen-Suche:
 
-# Ablauf
+\begin{center}
+    \includegraphics[width=0.8\columnwidth]{images/automatisierung_datenpipelines.png}
+\end{center}
 
 ## Betrachtete Probleme
 
@@ -49,8 +57,10 @@ header-packages:
   * Wie visualiere ich diese Daten für zusätzliche/grundlegende Erkenntnisse?
 
   * genutzt und benötigt von
-    * Pentester/RedTeamer
-    * BugBounty-Hunter
+    * __Pentester/RedTeamer__
+    * __BugBounty-Hunter__
+
+# Ablauf
 
 ## Ablauf
 
@@ -96,7 +106,7 @@ Ziel ist es, möglichst viele erreichbare Ziele im Zielbereich zu finden.
     * Web Archive (Wayback, ArchiveIt)
     * Scraping (Baido, Bing, Yahoo)
 
-  * --> [https://github.com/OWASP/Amass](https://github.com/OWASP/Amass)
+  * --> [OWASP Amass](https://github.com/OWASP/Amass)
 
 
 ~~~{.bash}
@@ -111,7 +121,7 @@ amass enum -passive -d example.com -config path/amass_config.ini
     * Zonen-Transfer
     * Bruteforce mit kontextbezogenen Permutationen
     * CIDR und ASN Sweeping ([ASN?](https://bgpview.io/prefix/139.11.0.0/16)) 
-    * --> [https://github.com/OWASP/Amass](https://github.com/OWASP/Amass)
+    * --> [OWASP Amass](https://github.com/OWASP/Amass)
 
 ~~~{.bash}
 # aktive Enumeration von Subdomains für gegebene Domain example.com
@@ -163,7 +173,7 @@ Ziel ist es, ein umfassendes Bild über die genutzten Services, die beteiligten 
   * [--] **masscan** keine Plugins oder sonstiger Komfort
 
   * --> Kombination aus Beidem
-    * [https://github.com/capt-meelo/MassMap](https://github.com/capt-meelo/MassMap)
+    * [MassMap](https://github.com/capt-meelo/MassMap)
 
 ## Portscan Processing und Visualisierung
 
@@ -183,7 +193,7 @@ Ziel ist es, ein umfassendes Bild über die genutzten Services, die beteiligten 
   * nikto und nmap-Plugins haben weiterhin Daseinsberechtigung
   * jedoch zunehmend CI/CD, Skalierbarkeit und Erweiterbarkeit wichtig
   
-  * --> [https://github.com/projectdiscovery/nuclei](https://github.com/projectdiscovery/nuclei) 
+  * --> [nuclei](https://github.com/projectdiscovery/nuclei) 
 
 
 \begin{center}
@@ -220,13 +230,13 @@ Ziel ist es, die HTML- und JS-Sourcecodes aller Seiten einzusammeln (weitere Ana
 
   * Alte Versionen von Webseiten
     * WaybackMachine, Archive.org
-    * --> [https://github.com/tomnomnom/waybackurls](https://github.com/tomnomnom/waybackurls), [https://github.com/lc/gau](https://github.com/lc/gau)
+    * --> [waybackurls](https://github.com/tomnomnom/waybackurls), [gau](https://github.com/lc/gau)
   * Spidering über zugängliche Seiten
     * --> gospider, Burp Spider, scrapy
   * Threat Exchanges und URL Crawl Datenbanken
     * Alien Labs Open Threat Exchange
     * Common Crawl
-    * --> [https://github.com/lc/gau](https://github.com/lc/gau)
+    * --> [gau](https://github.com/lc/gau)
 
 \vspace{1cm}
 \begin{block}{DEMO}
@@ -235,17 +245,19 @@ Ziel ist es, die HTML- und JS-Sourcecodes aller Seiten einzusammeln (weitere Ana
 
 ## One-Liner KungFu
 
-  * [https://github.com/dwisiswant0/awesome-oneliner-bugbounty](https://github.com/dwisiswant0/awesome-oneliner-bugbounty)
+  * [awesome-oneliner-bugbounty](https://github.com/dwisiswant0/awesome-oneliner-bugbounty)
 
 ![](images/oneliner.png)
 
 ## One-Liner KungFu
 
+  * Output von Dalfox während Laufzeit:
+
 ![](images/dalfox.png)
 
 ## One-Liner KungFu
 
-  * obfuscate the URL
+  * gefundene Cross-Site-Scripting-Schwachstelle:
 
 ![](images/dalfox_poc.png)
 
@@ -270,7 +282,7 @@ function_curl_and_save() {
 }
 ~~~
 
-  * Tool zur Filterung sensibler Informationen [https://github.com/tomnomnom/gf](https://github.com/tomnomnom/gf)
+  * Tool zur Filterung sensibler Informationen [gf](https://github.com/tomnomnom/gf)
 
 \vspace{1cm}
 \begin{block}{DEMO}
@@ -291,7 +303,7 @@ function_curl_and_save() {
 ## Parallelisierung von Zielen
 
   * viele Ziele gleichzeitig und iterativ betrachten
-  * [https://github.com/tomnomnom/meg](meg) scannt viele URL-Pfade und viele Hosts iterativ
+  * __Tool der Wahl:__ [meg](https://github.com/tomnomnom/meg) scannt viele URL-Pfade und viele Hosts iterativ
 
 \vspace{1cm}
 \begin{block}{DEMO}
@@ -301,9 +313,9 @@ function_curl_and_save() {
 
 ## Parallelisierung der Angriffsmaschinen
 
-  * mit Axiom können schnell und elegent Cloud-Instanzen zu Hacking-Cluster orchestriert werden
+  * mit modernen Orchestrations-Tools parallele Ansteuerung von mehreren Cloud-Instanzen orchestriert werden --> Hacking-Cluster
     * -> hohe Parallelität mit sehr vielen IP-Adressen
-  * [https://github.com/pry0cc/axiom](Axiom)
+  * __Tool der Wahl:__ [Axiom](https://github.com/pry0cc/axiom)
   
 \vspace{1cm}
 \begin{block}{DEMO}
@@ -318,9 +330,14 @@ function_curl_and_save() {
     * Datenverarbeitung
     * schnellstmögliche Datenfilterung und -visualisierung
   * Automatisiere so viel wie möglich
-  * Skillset + OpenSource > Propriätere Scan-Tools
+  * Skillset + OpenSource __>__ Propriätere Scan-Tools
 
 ## Ausblick
 
-  * Integration und Automatisierung in einheitliche Tool-Pipeline
+  * Integration und Automatisierung in einheitliche Tool-Pipeline (Webapp, Chat-Bots)
   * Einsatz von GNNs (Graph Neural Networks)
+
+\begin{center}
+    \includegraphics[width=0.6\columnwidth]{images/gnn.png}
+\end{center}
+	
